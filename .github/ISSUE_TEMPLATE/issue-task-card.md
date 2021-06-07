@@ -1,5 +1,5 @@
 ---
-name: issue task card
+name: Issue task card
 about: issue task card
 title: "[Task] 이슈 카드 제목 설정해 주세요"
 labels: ''
