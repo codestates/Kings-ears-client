@@ -1,12 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Pen+Script&display=swap');
+
 :root {
   --dark-main-color:  #1a2d2b;
   --medium-dark-color: #324f4d;
-  --highlight-color: #f5c9c6;
+  --highlight-color: #fbd428;
   --white-color: #fff;
+  --nanum-gothic: 'Nanum Gothic', sans-serif;
+  --nanum-pen-script: 'Nanum Pen Script', cursive;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--nanum-gothic);
+}
+
+h1 {
+  font-family: var(--nanum-pen-script);
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App > video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* 공통 스타일 */
+.modalSeaweed {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-content: center;
+}
+
+.landing-modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  column-gap: 2rem;
+}
+
+.landing-modal-buttons > button {
+  width: 145px;
+  padding: 1rem 2rem;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  border-radius: 999px;
+  background-color: var(--highlight-color);
+  border: none;
+}
+.landing-modal-buttons > button:hover {
+  cursor: pointer;
+  background-color: #ffe367;
 }
