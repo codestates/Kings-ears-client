@@ -1,4 +1,4 @@
-import { IS_LOGIN } from '../actions';
+import { IS_LOGIN, GET_ACCESS_TOKEN, GET_USER_LEVEL } from '../actions';
 import { initialState } from './initialState';
 
 const userReducer = (state = initialState, action) => {
