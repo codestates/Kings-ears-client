@@ -1,0 +1,37 @@
+@import "../../styles/App.css";
+
+/* 공통 스타일 */
+.modalSeaweed {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-content: center;
+}
+
+.landing-modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  column-gap: 2rem;
+}
+
+.landing-modal-buttons > button {
+  width: 145px;
+  padding: 1rem 2rem;
+  letter-spacing: 2px;
+  font-size: 1.2rem;
+  border-radius: 999px;
+  background-color: var(--highlight-color);
+  border: none;
+}
+.landing-modal-buttons > button:hover {
+  cursor: pointer;
+  background-color: #ffe367;
+}
