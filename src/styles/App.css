@@ -1,0 +1,12 @@
+:root {
+  --dark-main-color:  #1a2d2b;
+  --medium-dark-color: #324f4d;
+  --highlight-color: #f5c9c6;
+  --white-color: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
