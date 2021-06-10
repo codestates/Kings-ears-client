@@ -35,3 +35,66 @@
   cursor: pointer;
   background-color: #ffe367;
 }
+
+.loginBox {
+  width: 400px;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  background-color: var(--medium-dark-color);
+  position: relative;
+}
+
+.loginBox form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.loginModal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgb(230, 230, 230);
+}
+.loginModal-close-btn:hover {
+  cursor: pointer;
+  color: var(--white-color);
+}
+
+.loginBox form input {
+  height: 1.5rem;
+  padding: 1rem 1rem 0.8rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  color: var(--white-color);
+}
+.loginBox form input::placeholder {
+  color: #fff;
+}
+.loginBox form input:focus {
+  outline: none;
+}
+.loginBox form .loginModal-submit-btn {
+  width: 100px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  transition: 0.2s ease-in;
+}
+.loginBox form .loginModal-submit-btn:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.errorMessage {
+  color: var(--highlight-color);
+  font-style: italic;
+  text-align: center;
+}
+
