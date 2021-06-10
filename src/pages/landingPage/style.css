@@ -1,1 +1,24 @@
 @import "../../styles/App.css";
+
+.LandingPage {
+  position: static;
+  padding: 2rem;
+  color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.LandingPage-welcome {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+.LandingPage-welcome > h1 {
+  font-size: 5rem;
+}
+.LandingPage-welcome > div {
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
