@@ -14,6 +14,11 @@ export default function VisitorButtons() {
   function signinHandler() {
     setSignInMode(true)
   }
+
+  const closeSigninModal = () => {
+    setSignInMode(false);
+  }
+
   return (
     <div className="landing-modal-buttons">
       <button onClick={loginHandler}>로그인</button>
@@ -22,7 +27,7 @@ export default function VisitorButtons() {
         logInMode && <LoginModal />
       }
       {
-        signInMode && <SigninModal />
+        signInMode && <SigninModal open={signInMode} close={closeSigninModal} />
       }
     </div>
   )

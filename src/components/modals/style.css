@@ -2,16 +2,21 @@
 
 /* 공통 스타일 */
 .modalSeaweed {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  display: grid;
+  display: none;
+  z-index: 999;
   place-content: center;
+}
+
+.modalSeaweed.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show .3s;
 }
 
 .modalSeaweed > div > form {
@@ -29,13 +34,20 @@
   align-items: center;
   border-radius: 20px;
   position: relative;
+  animation: modal-show .3s;
 }
 
 .signinBox .signin-box-close-btn {
-  color:rgb(0, 0, 0);
+  color: var(--white-color);
   position: absolute;
   top: 15px;
   right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.signinBox .signin-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
 }
 
 .signinBox > form > input {
@@ -52,6 +64,10 @@
   color: var(--white-color);
 }
 
+.signinBox > form > input:focus {
+  outline: none;
+}
+
 .signinBox > form > button {
   width: 100px;
   align-self: center;
@@ -60,7 +76,7 @@
   border:none;
   background-color: var(--white-color);
   position: relative;
-  top: 18px;
+  top: 15px;
   transition: 0.1s ease-in;
 }
 
@@ -72,8 +88,14 @@
 .alert-box {
   background-color: transparent;
   min-height: 1em;
-  color: var(--white-color);
+  color: var(--highlight-color);
+  font-style: italic;
   text-align: center;
+}
+
+.alert-box.error {
+  position: relative;
+  top: 25px;
 }
 
 .landing-modal-buttons {
@@ -96,4 +118,24 @@
 .landing-modal-buttons > button:hover {
   cursor: pointer;
   background-color: #ffe367;
+}
+
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-show {
+  from{
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
 }
