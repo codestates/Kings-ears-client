@@ -17,6 +17,34 @@
 .modalSeaweed > div > form {
   display: flex;
   flex-direction: column;
+  min-width: 80%;
+}
+
+.signinBox {
+  background-color: #fff;
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.signinBox > div {
+  color:rgb(0, 0, 0);
+}
+
+.signinBox > form > input {
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.alert-box {
+  background-color: transparent;
+  min-height: 1em;
+  color: rgb(0, 0, 0);
+  text-align: center;
 }
 
 .landing-modal-buttons {
