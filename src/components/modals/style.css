@@ -21,29 +21,58 @@
 }
 
 .signinBox {
-  background-color: #fff;
+  background-color: var(--medium-dark-color);
   min-width: 400px;
   min-height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  position: relative;
 }
 
-.signinBox > div {
+.signinBox .signin-box-close-btn {
   color:rgb(0, 0, 0);
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 
 .signinBox > form > input {
   min-height: 2.5em;
   margin-bottom: 5px;
   margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+.signinBox > form > input::placeholder {
+  color: var(--white-color);
+}
+
+.signinBox > form > button {
+  width: 100px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 18px;
+  transition: 0.1s ease-in;
+}
+
+.signinBox > form > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
 }
 
 .alert-box {
   background-color: transparent;
   min-height: 1em;
-  color: rgb(0, 0, 0);
+  color: var(--white-color);
   text-align: center;
 }
 

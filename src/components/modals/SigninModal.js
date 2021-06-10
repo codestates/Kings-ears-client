@@ -42,7 +42,9 @@ const SigninModal = withRouter(({ history }) => {
           })
         .then(res => {
           console.log(res.status)
-          return () => history.push('/')
+          if(res.data.message === 'OK') {
+            history.push('/');
+          }
         })
         .catch(err => {
           const errMessage = err.response.data.message;
@@ -100,9 +102,7 @@ const SigninModal = withRouter(({ history }) => {
   return (
     <div className="modalSeaweed">
       <div className="signinBox">
-        <div>
-          <FaWindowClose onClick={closeModal} />
-        </div>
+        <FaWindowClose onClick={closeModal} className='signin-box-close-btn' />
         <form>
           <input
             type="text"
