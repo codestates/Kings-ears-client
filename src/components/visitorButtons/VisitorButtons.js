@@ -19,7 +19,7 @@ export default function VisitorButtons() {
       <button onClick={loginHandler}>로그인</button>
       <button onClick={signinHandler}>회원가입</button>
       {
-        logInMode && <LoginModal />
+        logInMode && <LoginModal setLogInMode={setLogInMode}/>
       }
       {
         signInMode && <SigninModal />
