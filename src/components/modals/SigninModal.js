@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import './style.css';
 import { FaWindowClose } from 'react-icons/fa';
 import axios from 'axios';
@@ -7,7 +6,6 @@ import { passwordCheck, emailCheck, usernameCheck, checkAll } from '../../utilit
 
 const SigninModal = props => {
   const { open, close } = props;
-  const history = useHistory();
   const [userInput, setUserInput] = useState({
     username: '',
     email: '',
@@ -15,6 +13,7 @@ const SigninModal = props => {
   });
   const [errMessage, setErrMessage] = useState('');
   const [validMessage, setValidMessage] = useState('');
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
 
   const handleInputValue = (key) => (e) => {
     setUserInput({ ...userInput, [key]: e.target.value });
@@ -48,9 +47,8 @@ const SigninModal = props => {
         'Content-Type': 'application/json'
       }
     ).then(res => {
-      console.log(res.status)
       if (res.data.message === 'OK') {
-        history.push('/');
+        setSignUpSuccess(true);
       }
     }).catch(err => {
       const errMessage = err.response.data.message;
@@ -103,11 +101,17 @@ const SigninModal = props => {
   }
 
   return (
-    <div className={open ? 'modalSeaweed openModal' : 'modalSeaweed'} >
+    <div className={open ? 'modalSeaweed openModal' : 'modalSeaweed'}>
       {open ? (
         <div className="signinBox">
           <FaWindowClose onClick={close} className='signin-box-close-btn' size={20} />
-          <form>
+          {signUpSuccess ? (
+            <div className='successMsg'>
+              <div>회원 가입에 성공 하였습니다!</div>
+              <button onClick={close}>로그인 하러 가기</button>
+            </div>
+          ) : (
+            <form>
             <input
               type="text"
               placeholder="Username"
@@ -144,6 +148,7 @@ const SigninModal = props => {
               : <div className='alert-box error'></div>
             }
           </form>
+          )}  
         </div>
       ) : null}
     </div>
