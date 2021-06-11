@@ -7,10 +7,14 @@ import NewSecret from './pages/newSecret/NewSecret';
 import ViewSecret from './pages/viewSecret/ViewSecret';
 import Nav from './components/nav/Nav';
 import backgroundVideo from './assets/background.mp4'
+import { useSelector, useDispatch } from 'react-redux'
+import { isLogin, getAccessToken, getUserLevel } from './actions/index.js'
 
 function App() {
-  //임시 상태: 스토어로 저장 변경 예정
-  const [isLogedIn, setIsLogedIn] = useState(true)
+  // Redux 관련
+  const state = useSelector(state => state.userReducer)
+  const { isLogin, accessToken, userLevel } = state
+  const dispatch = useDispatch()
 
   return (
     <Router>
@@ -30,7 +34,7 @@ function App() {
             <ViewSecret />
           </Route>
         </Switch>
-        { isLogedIn && <Nav/> }
+        { isLogin && <Nav/> }
       </div>
     </Router>
   );
