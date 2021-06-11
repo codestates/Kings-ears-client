@@ -5,7 +5,7 @@ import axios from 'axios';
 import './style.css';
 import exampleImg from '../../assets/farmer.jpeg';
 import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
-import ByeModal  from '../../components/modals/ByeModal';
+import ByeModal from '../../components/modals/ByeModal';
 
 export default function MyPage() {
   const dispatch = useDispatch();
@@ -14,6 +14,11 @@ export default function MyPage() {
   const [pwChangeMode, setPwChangeMode] = useState(false);
   const [byeMode, setByeMode] = useState(false);
   const [userLv, setUserLv] = useState(0);
+  const [userInfo, setUserInfo] = useState({
+    username: '',
+    secrets: 0,
+    viewSecrets: [],
+  })
 
   useEffect(() => {
     axios
@@ -22,6 +27,18 @@ export default function MyPage() {
           authorization: `bearer ${accessToken}`
         },
         withCredentials: true,
+      })
+      .then(res => {
+        const { username, secrets, viewsecret } = res.data.data;
+        setUserInfo({
+          ...userInfo,
+          username: username,
+          secrets: secrets,
+          viewSecrets: viewsecret,
+        });
+      })
+      .catch(err => {
+        
       })
   }, [])
 
