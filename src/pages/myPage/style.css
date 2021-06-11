@@ -1,1 +1,20 @@
 @import "../../styles/App.css";
+
+.MyPage {
+    color: var(--white-color);
+    background-color: var(--medium-dark-color);
+    border-radius: 20px;
+    padding: 1em 1em;
+}
+
+.MyPage .content-wrapper {
+    display: flex;
+    column-gap: 1em;
+}
+
+.readed-secret ul li {
+    list-style: none;
+    font-size: 1.5em;
+    margin-bottom: 3em;
+    margin-top: 3em;
+}
