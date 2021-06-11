@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { FaWindowClose } from 'react-icons/fa'
 import { isLogin, getAccessToken, getUserLevel } from '../../actions/index.js'
 
-export default function LoginModal( { setLogInMode } ) {
+export default function LoginModal(props) {
+  const { open, close } = props;
   const state = useSelector(state => state.userReducer)
   const dispatch = useDispatch()
 
@@ -15,10 +16,6 @@ export default function LoginModal( { setLogInMode } ) {
   const [errorMessage, setErrorMessage] = useState('')
 
   const history = useHistory()
-
-  function closeModal() {
-    setLogInMode(false)
-  }
 
   function handleEmail(e) {
     setEmail(e.target.value)
@@ -60,16 +57,18 @@ export default function LoginModal( { setLogInMode } ) {
   }
 
   return (
-    <div className="modalSeaweed">
-      <div className="loginBox">
-        <FaWindowClose onClick={closeModal} className="loginModal-close-btn"/>
-        <form onSubmit={handleLogin}>
-          <input type="email" placeholder="Email" onChange={handleEmail}></input>
-          <input type="password" placeholder="Password" onChange={handlePassword}></input>
-          { errorMessage !== "" && <div className="errorMessage">{ errorMessage }</div>}
-          <button type="submit" className="loginModal-submit-btn">로그인</button>
-        </form>
-      </div>
+    <div className={open ? 'modalSeaweed openModal' : "modalSeaweed"} >
+      {open ? (
+        <div className="loginBox">
+          <FaWindowClose onClick={close} className="loginModal-close-btn"/>
+          <form onSubmit={handleLogin}>
+            <input type="email" placeholder="Email" onChange={handleEmail}></input>
+            <input type="password" placeholder="Password" onChange={handlePassword}></input>
+            { errorMessage !== "" && <div className="errorMessage">{ errorMessage }</div>}
+            <button type="submit" className="loginModal-submit-btn">로그인</button>
+          </form>
+        </div>
+      ) : null}
     </div>
   )
 }

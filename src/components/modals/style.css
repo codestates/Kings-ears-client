@@ -152,6 +152,7 @@
   align-self: center;
   background-color: var(--medium-dark-color);
   position: relative;
+  animation: modal-show .3s;
 }
 
 .loginBox form {

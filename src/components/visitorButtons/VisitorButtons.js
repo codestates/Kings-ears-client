@@ -15,6 +15,10 @@ export default function VisitorButtons() {
     setSignInMode(true)
   }
 
+  const closeLoginModal = () => {
+    setLogInMode(false);
+  }
+
   const closeSigninModal = () => {
     setSignInMode(false);
   }
@@ -24,7 +28,7 @@ export default function VisitorButtons() {
       <button onClick={loginHandler}>로그인</button>
       <button onClick={signinHandler}>회원가입</button>
       {
-        logInMode && <LoginModal setLogInMode={setLogInMode}/>
+        logInMode && <LoginModal open={setLogInMode} close={closeLoginModal} />
       }
       {
         signInMode && <SigninModal open={signInMode} close={closeSigninModal} />
