@@ -37,6 +37,28 @@
   animation: modal-show .3s;
 }
 
+.signinBox .successMsg {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBox .successMsg button {
+  width: 130px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 60px;
+  transition: 0.1s ease-in;
+}
+
+.signinBox .successMsg button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
 .signinBox .signin-box-close-btn {
   color: var(--white-color);
   position: absolute;
