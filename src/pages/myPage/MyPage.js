@@ -75,6 +75,10 @@ const MyPage = () => {
     setPwChangeMode(true);
   };
 
+  const handleChangePwModalClose = () => {
+    setPwChangeMode(false);
+  }
+
   const handleByeBye = () => {
     setByeMode(true);
   };
@@ -99,7 +103,7 @@ const MyPage = () => {
 
   return (
     <div className="MyPage">
-      {pwChangeMode && <PasswordChangeModal />}
+      {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
       {byeMode && <ByeModal />}
       <Nav />
       <div className='content-wrapper'>

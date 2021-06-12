@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaWindowClose } from 'react-icons/fa'
-import { isLogin, getAccessToken, getUserLevel } from '../../actions/index.js'
+import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index.js'
 
 export default function LoginModal(props) {
   const { open, close } = props;
@@ -44,7 +44,7 @@ export default function LoginModal(props) {
         // 스토어 상태 변경 해주기
         let userLevel = calculateUserLevel(res.data.secrets)
         dispatch(getUserLevel(userLevel)) 
-        dispatch(isLogin(true))
+        dispatch(changeLogInStatus(true))
 
         //랜딩페이지로 리디랙션: 서버 연결 후 테스팅 필요
         history.push('/')
