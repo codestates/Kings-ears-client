@@ -120,6 +120,11 @@
   top: 25px;
 }
 
+.alert-box.pw {
+  position: relative;
+  top: 43px;
+}
+
 .landing-modal-buttons {
   display: flex;
   justify-content: center;

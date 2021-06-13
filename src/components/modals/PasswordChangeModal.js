@@ -114,8 +114,8 @@ const PasswordChangeModal = (props) => {
                             ></input>
                             {errMessage === '3' && <div className='alert-box'>입력한 비밀번호와 다릅니다</div>}
                             <button type="submit" onClick={handleChangePw}>비밀번호 변경</button>
-                            {errMessage === '4' && <div className='alert-box'>현재 비밀번호를 올바르게 입력해 주세요</div>}
-                            {errMessage === '6' && <div className='alert-box'>모든 항목은 필수 입니다</div>}
+                            {errMessage === '4' && <div className='alert-box pw'>현재 비밀번호를 올바르게 입력해 주세요</div>}
+                            {errMessage === '6' && <div className='alert-box pw'>모든 항목은 필수 입니다</div>}
                         </form>
                     )}
                 </div>
