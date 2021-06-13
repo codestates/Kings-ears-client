@@ -143,6 +143,91 @@
   background-color: #ffe367;
 }
 
+.modal-box {
+  background-color: var(--medium-dark-color);
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.modal-box > form > button {
+  width: 120px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 30px;
+  transition: 0.1s ease-in;
+}
+
+.modal-box > form > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.modal-box .modal-box-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.modal-box .modal-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.modal-box > form > input {
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+.modal-box > form > input::placeholder {
+  color: var(--white-color);
+}
+
+.modal-box > form > input:focus {
+  outline: none;
+}
+
+.modal-box .successMsg {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal-box .successMsg div {
+  margin-bottom: 0.5em;
+}
+
+.modal-box .successMsg button {
+  width: 130px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 40px;
+  transition: 0.1s ease-in;
+}
+
+.modal-box .successMsg button:hover {
+  background-color: var(--highlight-color);
+}
 
 @keyframes modal-bg-show {
   from {

@@ -116,7 +116,7 @@ const MyPage = () => {
             <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
           </div>
           <div className='button-wrapper'>
-            <button>비밀번호 변경</button>
+            <button onClick={handleChangePw}>비밀번호 변경</button>
             <button>회원 탈퇴</button>
           </div>
         </div>
