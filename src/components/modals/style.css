@@ -128,7 +128,7 @@
   column-gap: 2rem;
 }
 
-.landing-modal-buttons > button {
+.landing-modal-buttons button {
   width: 145px;
   padding: 1rem 2rem;
   letter-spacing: 2px;
@@ -138,7 +138,7 @@
   border: none;
 }
 
-.landing-modal-buttons > button:hover {
+.landing-modal-buttons button:hover {
   cursor: pointer;
   background-color: #ffe367;
 }

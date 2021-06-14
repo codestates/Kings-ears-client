@@ -1,10 +1,11 @@
+import { Link } from 'react-router-dom'
 import './style.css'
 
 export default function MemberButtons() {
   return (
     <div className="landing-modal-buttons">
-      <button>비밀보기</button>
-      <button>비밀쓰기</button>
+      <Link to='/viewsecret'><button>비밀보기</button></Link>
+      <Link to='/writesecret'><button>비밀쓰기</button></Link>
     </div>
   )
 }
