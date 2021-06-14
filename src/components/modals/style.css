@@ -100,6 +100,8 @@
   position: relative;
   top: 15px;
   transition: 0.1s ease-in;
+  font-size: 1em;
+  letter-spacing: 0;
 }
 
 .signinBox > form > button:hover {
@@ -310,6 +312,8 @@
   border:none;
   background-color: var(--white-color);
   transition: 0.2s ease-in;
+  font-size: 1em;
+  letter-spacing: 0;
 }
 
 .loginBox form .loginModal-submit-btn:hover {
