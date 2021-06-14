@@ -28,7 +28,7 @@ export default function NewSecret() {
     // 비밀이 제대로 작성되었을 경우
     axios
       .post(
-        'http://localhost:4000/newsecret', 
+        REACT_APP_URI+'/new', 
         { content: secret }, 
         { headers: 
           { authorization: `bearer ${ accessToken }` },
@@ -43,14 +43,14 @@ export default function NewSecret() {
         // access token 만료로인해 새로 요청해야 할 경우
         if (err.status === 403) {
           axios
-            .get('http://localhost:4000/accesstoken', {
+            .get(REACT_APP_URI+'/accesstoken', {
               withCredentials: true
             })
             .then( res => {
               dispatch(getAccessToken(res.data.accessToken))
               axios
                 .post(
-                  'http://localhost:4000/newsecret', 
+                  REACT_APP_URI+'/new', 
                   { content: secret }, 
                   { headers: 
                     { authorization: `bearer ${ accessToken }` },

@@ -20,7 +20,7 @@ const ByeModal = props => {
 
     const handleByeBtn = () => {
         axios
-            .delete('https://api.cakes.com/byebye', {
+            .delete(REACT_APP_URI+'/byebye', {
                 withCredentials: true,
                 headers: {
                     password: userInput,

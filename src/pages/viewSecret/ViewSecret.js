@@ -14,10 +14,12 @@ export default function ViewSecret() {
 
   const handleShowSecret = (e) => {
     // 서버 요청: 비밀 가져오기
-    axios.get('http://localhost:4000/list', {
-      withCredentials: true,
-      'Content-Type': 'application/json'
-    })
+    axios.get(REACT_APP_URI+'/secret', 
+      { headers: 
+        { authorization: `bearer ${ accessToken }` },
+        withCredentials: true
+      }
+    )
     .then (res => {
       // 받은 데이터로 상태 변경 하기
       setSecretId(res.data.data.id)

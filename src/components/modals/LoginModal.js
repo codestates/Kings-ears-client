@@ -35,7 +35,7 @@ export default function LoginModal(props) {
     }
 
     //로그인 요청 보내기: 앤드포인트 변경 필요 (케이크 아니에욧!!!)
-    axios.post('https://api.cakes.com/signin', {
+    axios.post(REACT_APP_URI+'/signin', {
       email: email,
       password: password
     })
@@ -45,6 +45,7 @@ export default function LoginModal(props) {
         let userLevel = calculateUserLevel(res.data.secrets)
         dispatch(getUserLevel(userLevel)) 
         dispatch(changeLogInStatus(true))
+        dispatch(getAccessToken(res.data.accessToken))
 
         //랜딩페이지로 리디랙션: 서버 연결 후 테스팅 필요
         history.push('/')
