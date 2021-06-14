@@ -9,7 +9,6 @@ import Nav from './components/nav/Nav';
 import backgroundVideo from './assets/background.mp4'
 import { useSelector, useDispatch } from 'react-redux'
 import { isLogin, getAccessToken, getUserLevel } from './actions/index.js'
-import Loading from './components/loading/Loading';
 
 function App() {
   // Redux 관련
@@ -27,7 +26,6 @@ function App() {
 
   return (
     <Router>
-      
         <div className="App">
           <video src={backgroundVideo} muted loop autoPlay/>
           <Switch>
