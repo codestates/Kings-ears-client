@@ -7,6 +7,7 @@ import './style.css';
 import exampleImg from '../../assets/farmer.jpeg';
 import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
 import ByeModal from '../../components/modals/ByeModal';
+import { getAccessToken, changeLogInStatus } from '../../actions/index'
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -66,8 +67,14 @@ const MyPage = () => {
         });
       })
       .catch(err => {
-        //현재 가지고 있는 refreshToken으로 새로 갱신해야 할듯?
-        //refreshToken으로 accessToken 발급 받을 수 있는 API 필요
+        axios
+          .get('https://api.cakes.com/accesstoken', {
+            withCredentials: true,
+          })
+          .then(res => dispatch(getAccessToken(res.data.accessToken)))
+          .catch(err => {
+            dispatch(changeLogInStatus(false));
+          })
       })
   }, [accessToken, userInfo]);
 
@@ -105,40 +112,46 @@ const MyPage = () => {
     <div className="MyPage">
       {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
       {byeMode && <ByeModal />}
-      <Nav />
-      <div className='content-wrapper'>
-        <div className='info-wrapper'>
-          <div className='lv-img'><img src={exampleImg} width='150' alt='nothing to show' /></div>
-          <div className='my-info'>
-            <div>{addUserTitle(userLevel)} {userInfo.username}</div>
-            {/* 토큰 서버에서 받아와야 합니다. api 수정 필요!! */}
-            <div>소지 토큰 : 5개</div>
-            <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
+      {isLogin ? (
+        <React.Fragment>
+          <Nav />
+          <div className='content-wrapper'>
+            <div className='info-wrapper'>
+              <div className='lv-img'><img src={exampleImg} width='150' alt='nothing to show' /></div>
+              <div className='my-info'>
+                <div>{addUserTitle(userLevel)} {userInfo.username}</div>
+                {/* 토큰 서버에서 받아와야 합니다. api 수정 필요!! */}
+                <div>소지 토큰 : 5개</div>
+                <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
+              </div>
+              <div className='button-wrapper'>
+                <button onClick={handleChangePw}>비밀번호 변경</button>
+                <button>회원 탈퇴</button>
+              </div>
+            </div>
+            <div className='readed-secret'>
+              <ul>
+                {/* li로 뿌려주려 합니다. 서버에서 5개 받아오고 map으로 랜더링 */}
+                {userInfo.viewSecrets.map((el, idx) => {
+                  const { content, likecount, dislikecount } = el;
+                  
+                  return (
+                    <li key={idx}>
+                      <div className='content'>{content}</div>
+                      <div className='like-count'><AiFillLike /></div>
+                      <div>{likecount}</div>
+                      <div className='dislike-count'><AiFillDislike /></div>
+                      <div>{dislikecount}</div>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
           </div>
-          <div className='button-wrapper'>
-            <button onClick={handleChangePw}>비밀번호 변경</button>
-            <button>회원 탈퇴</button>
-          </div>
-        </div>
-        <div className='readed-secret'>
-          <ul>
-            {/* li로 뿌려주려 합니다. 서버에서 5개 받아오고 map으로 랜더링 */}
-            {userInfo.viewSecrets.map((el, idx) => {
-              const { content, likecount, dislikecount } = el;
-              
-              return (
-                <li key={idx}>
-                  <div className='content'>{content}</div>
-                  <div className='like-count'><AiFillLike /></div>
-                  <div>{likecount}</div>
-                  <div className='dislike-count'><AiFillDislike /></div>
-                  <div>{dislikecount}</div>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </div>
+        </React.Fragment>
+      ) : (
+          {/* 로그인 되지 않았으니 로그인 하라는 컴포넌트가 필요할 듯? */}
+      )}
     </div>
   )
 }
