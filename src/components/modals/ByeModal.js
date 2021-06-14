@@ -20,7 +20,7 @@ const ByeModal = props => {
 
     const handleByeBtn = () => {
         axios
-            .delete(REACT_APP_URI+'/byebye', {
+            .delete(process.env.REACT_APP_URI+'/byebye', {
                 withCredentials: true,
                 headers: {
                     password: userInput,
