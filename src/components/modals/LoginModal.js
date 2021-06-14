@@ -35,7 +35,7 @@ export default function LoginModal(props) {
     }
 
     //로그인 요청 보내기: 앤드포인트 변경 필요 (케이크 아니에욧!!!)
-    axios.post(REACT_APP_URI+'/signin', {
+    axios.post(process.env.REACT_APP_URI+'/signin', {
       email: email,
       password: password
     })

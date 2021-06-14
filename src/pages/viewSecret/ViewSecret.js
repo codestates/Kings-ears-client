@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux';
 import './style.css'
 import ViewSecretBtns from './ViewSecretBtns.js'
 
 export default function ViewSecret() {
-  const [mode, setMode] = useState('button')
+  const state = useSelector(state => state.userReducer)
+  const { accessToken } = state
 
+  const [mode, setMode] = useState('button')
   const [secretId, setSecretId] = useState(0)
   const [writer, setWriter] = useState(null)
   const [content, setContent] = useState(null)
@@ -14,7 +17,7 @@ export default function ViewSecret() {
 
   const handleShowSecret = (e) => {
     // 서버 요청: 비밀 가져오기
-    axios.get(REACT_APP_URI+'/secret', 
+    axios.get(process.env.REACT_APP_URI+'/secret', 
       { headers: 
         { authorization: `bearer ${ accessToken }` },
         withCredentials: true
