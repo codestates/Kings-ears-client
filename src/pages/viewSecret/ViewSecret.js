@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import './style.css'
-import ViewSecretBtns from '../../components/ViewSecretBtns'
+import ViewSecretBtns from './ViewSecretBtns.js'
 
 export default function ViewSecret() {
   const [mode, setMode] = useState('button')

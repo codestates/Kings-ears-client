@@ -1,1 +1,56 @@
 @import "../../styles/App.css";
+
+.NewSecret {
+  background: #f9f8ecd5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
+}
+
+.NewSecret-form {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.NewSecret-form > textarea {
+  flex: 1 1 auto;
+  outline: none;
+  resize: none;
+  padding: 2rem;
+  border: none;
+  background: #f9f8ec;
+}
+
+.NewSecret-form > textarea::placeholder {
+  font-style: italic;
+  
+}
+
+.NewSecret-form-wordCount {
+  align-self: flex-end;
+  margin: 0.5rem 0.5rem 1rem 0;
+  color: var(--medium-dark-color);
+}
+
+.NewSecret-form > button {
+  padding: 0.3rem 1rem;
+  background: var(--dark-main-color);
+  letter-spacing: 1.5px;
+  border-radius: 999px;
+  border: none;
+  color: var(--white-color);
+  transition: 0.2s;
+  font-weight: bold;
+}
+
+.NewSecret-form > button:hover {
+  cursor: pointer;
+  background: var(--highlight-color);
+  color: var(--dark-main-color)
+}

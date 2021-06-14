@@ -326,3 +326,29 @@
   font-style: italic;
   text-align: center;
 }
+
+.guidance-modal-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark-main-color);
+  color: var(--white-color);
+  padding: 2rem 5rem;
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.5);
+  row-gap: 2rem;
+  font-weight: bold;
+}
+
+.guidance-modal-box button {
+  min-width: 100px;
+  padding: 0.5rem 0;
+  border-radius: 999px;
+  border: none;
+  font-weight: bold;
+}
+
+.guidance-modal-box button:hover {
+  cursor: pointer;
+  background: var(--highlight-color)
+}
