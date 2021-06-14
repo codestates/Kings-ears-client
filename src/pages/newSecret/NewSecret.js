@@ -88,7 +88,7 @@ export default function NewSecret() {
         <textarea 
           onChange={ handleWriting }
           placeholder="비밀을 작성하세요!"
-          maxlength="255"
+          maxLength="255"
           rows="5"
           cols="55"
         >
