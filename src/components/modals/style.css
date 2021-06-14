@@ -236,6 +236,92 @@
   background-color: var(--highlight-color);
 }
 
+.bye-modal-box {
+  background-color: var(--medium-dark-color);
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.bye-modal-box > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.bye-content-wrapper > div {
+  margin-bottom: 1em;
+}
+
+.bye-content-wrapper > input {
+  width: 100%;
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+  position: relative;
+  top: 10px;
+}
+
+.bye-content-wrapper > input::placeholder {
+  color: var(--white-color);
+}
+
+.bye-content-wrapper > input:focus {
+  outline: none;
+}
+
+.bye-modal-box .modal-box-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.bye-modal-box .modal-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 2em;
+  position: relative;
+  top: 10px;
+}
+
+.button-container > button {
+  width: 120px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 30px;
+  transition: 0.1s ease-in;
+}
+
+.button-container > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.message div {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 @keyframes modal-bg-show {
   from {
     opacity: 0;
