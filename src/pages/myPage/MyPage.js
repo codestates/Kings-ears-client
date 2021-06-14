@@ -7,6 +7,7 @@ import './style.css';
 import exampleImg from '../../assets/farmer.jpeg';
 import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
 import ByeModal from '../../components/modals/ByeModal';
+import { getAccessToken, changeLogInStatus } from '../../actions/index'
 
 const MyPage = () => {
   const dispatch = useDispatch();
@@ -66,10 +67,16 @@ const MyPage = () => {
         });
       })
       .catch(err => {
-        //현재 가지고 있는 refreshToken으로 새로 갱신해야 할듯?
-        //refreshToken으로 accessToken 발급 받을 수 있는 API 필요
+        axios
+          .get('https://api.cakes.com/accesstoken', {
+            withCredentials: true,
+          })
+          .then(res => dispatch(getAccessToken(res.data.accessToken)))
+          .catch(err => {
+            dispatch(changeLogInStatus(false));
+          })
       })
-  }, [accessToken, userInfo]);
+  }, [accessToken, userInfo, dispatch]);
 
   const handleChangePw = () => {
     setPwChangeMode(true);
@@ -82,6 +89,10 @@ const MyPage = () => {
   const handleByeBye = () => {
     setByeMode(true);
   };
+
+  const handleByeModalClose = () => {
+    setByeMode(false);
+  }
 
   //임시 타이틀 나중에 수정 필요!
   const addUserTitle = (userlv) => {
@@ -104,7 +115,8 @@ const MyPage = () => {
   return (
     <div className="MyPage">
       {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
-      {byeMode && <ByeModal />}
+      {byeMode && <ByeModal open={byeMode} close={handleByeModalClose} />}
+      {/* 나중에 isLogin에 따른 랜더링 넣어줘야 합니다. 지금 넣으면 테스트를 못해요 ㅜㅜ */}
       <Nav />
       <div className='content-wrapper'>
         <div className='info-wrapper'>
@@ -117,7 +129,7 @@ const MyPage = () => {
           </div>
           <div className='button-wrapper'>
             <button onClick={handleChangePw}>비밀번호 변경</button>
-            <button>회원 탈퇴</button>
+            <button onClick={handleByeBye}>회원 탈퇴</button>
           </div>
         </div>
         <div className='readed-secret'>
