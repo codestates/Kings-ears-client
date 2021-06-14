@@ -40,7 +40,7 @@ export default function LoginModal(props) {
       password: password
     })
     .then ( res => {
-      if (res.message === "OK") {
+      if (res.data.message === "OK") {
         // 스토어 상태 변경 해주기
         let userLevel = calculateUserLevel(res.data.secrets)
         dispatch(getUserLevel(userLevel)) 
