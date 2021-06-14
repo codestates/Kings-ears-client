@@ -36,7 +36,7 @@ const SigninModal = props => {
       return;
     }
 
-    axios.post('https://api.cakes.com/signup',
+    axios.post(REACT_APP_URI+'/signup',
       {
         username: username,
         email: email,
