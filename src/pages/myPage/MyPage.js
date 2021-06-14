@@ -76,7 +76,7 @@ const MyPage = () => {
             dispatch(changeLogInStatus(false));
           })
       })
-  }, [accessToken, userInfo]);
+  }, [accessToken, userInfo, dispatch]);
 
   const handleChangePw = () => {
     setPwChangeMode(true);
@@ -89,6 +89,10 @@ const MyPage = () => {
   const handleByeBye = () => {
     setByeMode(true);
   };
+
+  const handleByeModalClose = () => {
+    setByeMode(false);
+  }
 
   //임시 타이틀 나중에 수정 필요!
   const addUserTitle = (userlv) => {
@@ -111,47 +115,42 @@ const MyPage = () => {
   return (
     <div className="MyPage">
       {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
-      {byeMode && <ByeModal />}
-      {isLogin ? (
-        <React.Fragment>
-          <Nav />
-          <div className='content-wrapper'>
-            <div className='info-wrapper'>
-              <div className='lv-img'><img src={exampleImg} width='150' alt='nothing to show' /></div>
-              <div className='my-info'>
-                <div>{addUserTitle(userLevel)} {userInfo.username}</div>
-                {/* 토큰 서버에서 받아와야 합니다. api 수정 필요!! */}
-                <div>소지 토큰 : 5개</div>
-                <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
-              </div>
-              <div className='button-wrapper'>
-                <button onClick={handleChangePw}>비밀번호 변경</button>
-                <button>회원 탈퇴</button>
-              </div>
-            </div>
-            <div className='readed-secret'>
-              <ul>
-                {/* li로 뿌려주려 합니다. 서버에서 5개 받아오고 map으로 랜더링 */}
-                {userInfo.viewSecrets.map((el, idx) => {
-                  const { content, likecount, dislikecount } = el;
-                  
-                  return (
-                    <li key={idx}>
-                      <div className='content'>{content}</div>
-                      <div className='like-count'><AiFillLike /></div>
-                      <div>{likecount}</div>
-                      <div className='dislike-count'><AiFillDislike /></div>
-                      <div>{dislikecount}</div>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
+      {byeMode && <ByeModal open={byeMode} close={handleByeModalClose} />}
+      {/* 나중에 isLogin에 따른 랜더링 넣어줘야 합니다. 지금 넣으면 테스트를 못해요 ㅜㅜ */}
+      <Nav />
+      <div className='content-wrapper'>
+        <div className='info-wrapper'>
+          <div className='lv-img'><img src={exampleImg} width='150' alt='nothing to show' /></div>
+          <div className='my-info'>
+            <div>{addUserTitle(userLevel)} {userInfo.username}</div>
+            {/* 토큰 서버에서 받아와야 합니다. api 수정 필요!! */}
+            <div>소지 토큰 : 5개</div>
+            <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
           </div>
-        </React.Fragment>
-      ) : (
-          {/* 로그인 되지 않았으니 로그인 하라는 컴포넌트가 필요할 듯? */}
-      )}
+          <div className='button-wrapper'>
+            <button onClick={handleChangePw}>비밀번호 변경</button>
+            <button onClick={handleByeBye}>회원 탈퇴</button>
+          </div>
+        </div>
+        <div className='readed-secret'>
+          <ul>
+            {/* li로 뿌려주려 합니다. 서버에서 5개 받아오고 map으로 랜더링 */}
+            {userInfo.viewSecrets.map((el, idx) => {
+              const { content, likecount, dislikecount } = el;
+              
+              return (
+                <li key={idx}>
+                  <div className='content'>{content}</div>
+                  <div className='like-count'><AiFillLike /></div>
+                  <div>{likecount}</div>
+                  <div className='dislike-count'><AiFillDislike /></div>
+                  <div>{dislikecount}</div>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </div>
     </div>
   )
 }

@@ -7,7 +7,7 @@ import { changeLogInStatus } from '../../actions/index';
 import './style.css';
 import axios from 'axios';
 
-const PasswordChangeModal = (props) => {
+const PasswordChangeModal = props => {
     const history = useHistory();
     const state = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
