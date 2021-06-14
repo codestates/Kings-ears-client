@@ -17,7 +17,7 @@ export default function ViewSecret() {
 
   const handleShowSecret = (e) => {
     // 서버 요청: 비밀 가져오기
-    axios.get(process.env.REACT_APP_URI+'/secret', 
+    axios.get(`${process.env.REACT_APP_URI}/secret`, 
       { headers: 
         { authorization: `bearer ${ accessToken }` },
         withCredentials: true
