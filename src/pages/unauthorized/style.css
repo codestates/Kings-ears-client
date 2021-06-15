@@ -1,0 +1,43 @@
+@import "../../styles/App.css";
+
+.Unauthorized {
+  position: absolute;
+  inset: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+.Unauthorized-emoji {
+  font-size: 20rem;
+}
+
+.Unauthorized-message {
+  color: var(--white-color);
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 1rem;
+  
+}
+
+.Unauthorized-title {
+  font-size: 8rem;
+}
+
+.Unauthorized-message > button {
+  background: var(--highlight-color);
+  padding: 0.5rem 2rem;
+  border-radius: 999px;
+  font-weight: bold;
+  border: none;
+  margin-top: 1rem;
+}
+
+.Unauthorized-message > button:hover {
+  cursor: pointer;
+  background: #f5d753;
+}
