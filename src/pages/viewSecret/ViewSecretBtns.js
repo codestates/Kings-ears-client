@@ -20,7 +20,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
           toggleThumbsClassList('dislike', false)
           axios
             .get(
-              `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+              `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
               { headers: {
                 'Content-Type': 'application/json',
                 'likeCount': '1',
@@ -31,7 +31,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         }
         axios
           .get(
-            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '1',
@@ -45,7 +45,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         toggleThumbsClassList('like', false)
         axios
           .get(
-            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '-1',
@@ -65,7 +65,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
           toggleThumbsClassList('like', false)
           axios
             .get(
-              `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+              `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
               { headers: {
                 'Content-Type': 'application/json',
                 'likeCount': '-1',
@@ -76,7 +76,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         }
         axios
           .get(
-            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '0',
@@ -91,7 +91,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
 
         axios
           .get(
-            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret-user-response/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '0',
