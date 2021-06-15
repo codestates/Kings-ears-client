@@ -7,6 +7,7 @@ import ViewSecret from './pages/viewSecret/ViewSecret';
 import Nav from './components/nav/Nav';
 import backgroundVideo from './assets/background.mp4'
 import { useSelector } from 'react-redux'
+import Unauthorized from './pages/unauthorized/Unauthorized';
 
 function App() {
   // Redux 관련
@@ -29,6 +30,9 @@ function App() {
             </Route>
             <Route path='/viewsecret'>
               <ViewSecret />
+            </Route>
+            <Route path='/unauthorized'>
+              <Unauthorized />
             </Route>
           </Switch>
           { isLogin && <Nav/> }
