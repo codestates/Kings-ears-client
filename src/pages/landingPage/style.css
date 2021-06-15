@@ -14,11 +14,28 @@
   flex-direction: column;
   row-gap: 1rem;
 }
+
 .LandingPage-welcome > h1 {
   font-size: 5rem;
 }
+
 .LandingPage-welcome > div {
   padding-left: 2rem;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.LandingPage-info {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background: var(--dark-main-color);
+  color: var(--white-color);
+  list-style: none;
+  column-gap: 2rem;
 }
