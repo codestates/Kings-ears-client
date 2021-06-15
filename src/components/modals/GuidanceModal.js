@@ -1,9 +1,12 @@
 import React from 'react'
+import { useHistory } from 'react-router'
 
 export default function GuidanceModal( { mode, setMode } ) {
+  const history = useHistory()
+
   const handleClick = () => {
     if (mode === 'successful') {
-      window.location.href = '/'
+      history.push('/')
     } else {
       setMode('writing')
     }
