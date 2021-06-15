@@ -11,6 +11,7 @@ export default function LoginModal(props) {
   const state = useSelector(state => state.userReducer)
   const dispatch = useDispatch()
 
+  // 로컬 변수
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -34,32 +35,30 @@ export default function LoginModal(props) {
       return;
     }
 
-    //로그인 요청 보내기: 앤드포인트 변경 필요 (케이크 아니에욧!!!)
-    axios.post(process.env.REACT_APP_URI+'/signin', {
-      email: email,
-      password: password
-    })
+    //로그인 요청 보내기
+    axios.post(
+      `${process.env.REACT_APP_URI}/signin`, 
+      { email: email, password: password },
+      { withCredentials: true }
+    )
     .then ( res => {
-      if (res.data.message === "OK") {
-        // 스토어 상태 변경 해주기
-        let userLevel = calculateUserLevel(res.data.secrets)
-        dispatch(getUserLevel(userLevel)) 
-        dispatch(changeLogInStatus(true))
-        dispatch(getAccessToken(res.data.accessToken))
+      // 전역 변수 변경 (유저레벨, 로그인 상태, 토큰 상태)
+      let userLevel = calculateUserLevel(res.data.secrets)
+      dispatch(getUserLevel(userLevel)) 
+      dispatch(changeLogInStatus(true))
+      dispatch(getAccessToken(res.data.accessToken))
 
-        //랜딩페이지로 리디랙션: 서버 연결 후 테스팅 필요
-        history.push('/')
-
-      } else {
-        setErrorMessage("이메일 또는 비밀번호를 잘못 입력하셨습니다.")
-      }
+      //랜딩페이지로 리디랙션
+      history.push('/')
     })
-    .catch (err => console.log(err))
+    .catch (err => {
+      setErrorMessage("이메일 또는 비밀번호를 잘못 입력하셨습니다.")
+    })
   }
 
   return (
-    <div className={open ? 'modalSeaweed openModal' : "modalSeaweed"} >
-      {open ? (
+    <div className={ open ? 'modalSeaweed openModal' : "modalSeaweed" } >
+      { open ? (
         <div className="loginBox">
           <FaWindowClose onClick={close} className="loginModal-close-btn"/>
           <form onSubmit={handleLogin}>
