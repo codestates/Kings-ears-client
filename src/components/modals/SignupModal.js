@@ -36,7 +36,7 @@ const SignupModal = props => {
       return;
     }
 
-    axios.post(process.env.REACT_APP_URI+'/signup',
+    axios.post(`${process.env.REACT_APP_URI}/signup`,
       {
         username: username,
         email: email,
