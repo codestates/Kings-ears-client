@@ -20,7 +20,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
           toggleThumbsClassList('dislike', false)
           axios
             .get(
-              `http://localhost:4000/list/${ secretId }`,
+              `${process.env.REACT_APP_URI}/secret/${ secretId }`,
               { headers: {
                 'Content-Type': 'application/json',
                 'likeCount': '1',
@@ -31,7 +31,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         }
         axios
           .get(
-            `http://localhost:4000/list/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '1',
@@ -45,7 +45,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         toggleThumbsClassList('like', false)
         axios
           .get(
-            `http://localhost:4000/list/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '-1',
@@ -65,7 +65,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
           toggleThumbsClassList('like', false)
           axios
             .get(
-              `http://localhost:4000/list/${ secretId }`,
+              `${process.env.REACT_APP_URI}/secret/${ secretId }`,
               { headers: {
                 'Content-Type': 'application/json',
                 'likeCount': '-1',
@@ -76,7 +76,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
         }
         axios
           .get(
-            `http://localhost:4000/list/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '0',
@@ -91,7 +91,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
 
         axios
           .get(
-            `http://localhost:4000/list/${ secretId }`,
+            `${process.env.REACT_APP_URI}/secret/${ secretId }`,
             { headers: {
               'Content-Type': 'application/json',
               'likeCount': '0',
@@ -125,7 +125,7 @@ export default function ViewSecretBtns( {secretId, likeCount, dislikeCount, setL
       </div>
       <div className="viewSecret-btnBox-others">
         <button onClick={ handleShowNewSecret }>다른비밀보기</button>
-        <Link to='/writesecret'><button>비밀쓰기</button></Link>
+        <Link to='/newsecret'><button>비밀쓰기</button></Link>
       </div>
     </div>
   )

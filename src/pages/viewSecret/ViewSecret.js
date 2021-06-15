@@ -27,8 +27,8 @@ export default function ViewSecret() {
       // 받은 데이터로 상태 변경 하기
       setSecretId(res.data.data.id)
       setWriter(res.data.data.writer)
-      setLikeCount(res.data.data.likecount)
-      setDislikeCount(res.data.data.dislikecount)
+      setLikeCount(res.data.data.likeCount)
+      setDislikeCount(res.data.data.dislikeCount)
       setContent(res.data.data.content)
 
       // 비밀보기 버튼 사라지고 -> waiting 문구 나타났다가 사라지고 -> 비밀 보여주기(present모드)

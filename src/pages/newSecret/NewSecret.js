@@ -4,7 +4,6 @@ import axios from 'axios'
 import './style.css'
 import { changeLogInStatus, getAccessToken } from '../../actions';
 import GuidanceModal from '../../components/modals/GuidanceModal';
-import Nav from '../../components/nav/Nav.js'
 
 export default function NewSecret() {
   // 전역 상태
@@ -19,62 +18,65 @@ export default function NewSecret() {
   const handleNewSecretSubmit = (e) => {
     e.preventDefault()
 
-    // 비밀란을 비웠을 경우
-    if ( secret === '' ) {
-      setMode('secret not written')
-      return;
+    // 로그인 상태인 경우: 글 작성 가능
+    if ( isLogin === true ) {
+      // (1) 비밀란을 비웠을 경우
+      if ( secret === '' ) {
+        setMode('secret not written')
+        return;
+      }
+      
+      // (2) 비밀이 제대로 작성되었을 경우
+      axios
+        .post(
+          `${process.env.REACT_APP_URI}/newsecret`, 
+          { content: secret }, 
+          { headers: 
+            { authorization: `bearer ${ accessToken }` },
+            withCredentials: true
+          }
+        )
+        .then(() => {
+          // (3) 성공적으로 새로운 비밀을 생성했을 경우
+          setMode('successful')
+        })
+        .catch(err => {
+          // (4) access token 만료로인해 새로 요청해야 할 경우
+          if (err.status === 403) {
+            axios
+              .get(`${process.env.REACT_APP_URI}/accesstoken`, {
+                withCredentials: true
+              })
+              .then( res => {
+                dispatch(getAccessToken(res.data.accessToken))
+                axios
+                  .post(
+                    `${process.env.REACT_APP_URI}/newsecret`, 
+                    { content: secret }, 
+                    { headers: 
+                      { authorization: `bearer ${ accessToken }` },
+                      withCredentials: true
+                    }
+                  )
+                  .then(() => {
+                    // 성공적으로 새로운 비밀을 생성했을 경우
+                    setMode('successful')
+                  })
+                  .catch(err => {
+                    // 그 외의 에러가 발생했을 경우
+                    setMode('unidentified error')
+                  })
+              })
+              .catch(err => {
+                //만약 access token 요청 실패한 경우 로그인 상태 변경해주기
+                dispatch(changeLogInStatus(false))
+              })
+          } else {
+            // 그 외의 에러가 발생했을 경우
+            setMode('unidentified error')
+          }
+        })
     }
-    
-    // 비밀이 제대로 작성되었을 경우
-    axios
-      .post(
-        `${process.env.REACT_APP_URI}/new`, 
-        { content: secret }, 
-        { headers: 
-          { authorization: `bearer ${ accessToken }` },
-          withCredentials: true
-        }
-      )
-      .then(() => {
-        // 성공적으로 새로운 비밀을 생성했을 경우
-        setMode('successful')
-      })
-      .catch(err => {
-        // access token 만료로인해 새로 요청해야 할 경우
-        if (err.status === 403) {
-          axios
-            .get(`${process.env.REACT_APP_URI}/accesstoken`, {
-              withCredentials: true
-            })
-            .then( res => {
-              dispatch(getAccessToken(res.data.accessToken))
-              axios
-                .post(
-                  `${process.env.REACT_APP_URI}/new`, 
-                  { content: secret }, 
-                  { headers: 
-                    { authorization: `bearer ${ accessToken }` },
-                    withCredentials: true
-                  }
-                )
-                .then(() => {
-                  // 성공적으로 새로운 비밀을 생성했을 경우
-                  setMode('successful')
-                })
-                .catch(err => {
-                  // 그 외의 에러가 발생했을 경우
-                  setMode('unidentified error')
-                })
-            })
-            .catch(err => {
-              //만약 access token 요청 실패한 경우 로그인 상태 변경해주기
-              dispatch(changeLogInStatus(false))
-            })
-        } else {
-          // 그 외의 에러가 발생했을 경우
-          setMode('unidentified error')
-        }
-      })
   }
   
   const handleWriting = (e) => {
@@ -83,7 +85,7 @@ export default function NewSecret() {
 
   return (
     <div className="NewSecret">
-      { mode !== 'writing' && <GuidanceModal mode={mode} setMode={ setMode }/>}
+      { mode !== 'writing' && <GuidanceModal mode={ mode } setMode={ setMode }/>}
       <form className="NewSecret-form" onSubmit={ handleNewSecretSubmit }>
         <textarea 
           onChange={ handleWriting }
