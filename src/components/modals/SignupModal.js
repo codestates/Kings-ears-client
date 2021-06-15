@@ -4,7 +4,7 @@ import { FaWindowClose } from 'react-icons/fa';
 import axios from 'axios';
 import { passwordCheck, emailCheck, usernameCheck, checkAll } from '../../utilities/checkAvailable';
 
-const SigninModal = props => {
+const SignupModal = props => {
   const { open, close } = props;
   const [userInput, setUserInput] = useState({
     username: '',
@@ -155,4 +155,4 @@ const SigninModal = props => {
   )
 };
 
-export default SigninModal;
+export default SignupModal;

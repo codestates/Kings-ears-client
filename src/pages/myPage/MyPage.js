@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
-import Nav from '../../components/nav/Nav';
 import axios from 'axios';
 import './style.css';
-import exampleImg from '../../assets/farmer.jpeg';
+import priest from '../../assets/levelimg/priest.png';
 import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
 import ByeModal from '../../components/modals/ByeModal';
-import { getAccessToken, changeLogInStatus } from '../../actions/index'
+import { getAccessToken, changeLogInStatus } from '../../actions/index';
+import addUserTitle from '../../utilities/addUserTitle';
 
 const MyPage = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
-  const { isLogin, accessToken, userLevel } = state;
+  const { accessToken, userLevel } = state;
   const [pwChangeMode, setPwChangeMode] = useState(false);
   const [byeMode, setByeMode] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -21,7 +21,34 @@ const MyPage = () => {
     secrets: 50,
     viewSecrets: [
       {
-        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        content: "내가 그린 비밀 그림은 목이 긴 비밀 그림이다. 내가 그린 기린 그림은 비밀을 많이 가진 기린 그림이다.내가 그린 비밀 그림은 목이 긴 비밀 그림이다. 내가 그린 기린 그림은 비밀을 많이 가진 기린 그림이다. 내가 그린 비밀 그림은 목이 긴 비밀 그림이다. 내가 그린 기린 그림은 비밀을 많이 가진 기린 그림이다.내가 그린 비밀 그림은 목이 긴 비밀 그림이다. 내가 그린 기린 그림은 비밀을 많이 가진 기린 그림이다.",
+        likecount: 2,
+        dislikecount: 20,
+      },
+      {
+        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
+        likecount: 2,
+        dislikecount: 20,
+      },
+      {
+        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
+        likecount: 2,
+        dislikecount: 20,
+      },
+      {
+        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
+        likecount: 2,
+        dislikecount: 20,
+      },
+      {
+        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
+        likecount: 2,
+        dislikecount: 20,
+      },
+    ],
+    mySecret: [
+      {
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus ex exercitationem quam est enim placeat iure et asperiores adipisci. Error officiis, mollitia placeat voluptate nostrum soluta cum autem dolore voluptatibus nisi dolorem quaerat fugiat ipsa eius, assumenda non perspiciatis omnis eum ratione quibusdam ex earum itaque similique. Maiores tempora laborum commodi obcaecati distinctio et optio reprehenderit facilis aliquid repellendus id nesciunt, qui nisi magni illo sapiente, architecto quae necessitatibus labore molestiae laudantium reiciendis voluptates error quia. Praesentium molestiae quaerat rem eligendi sunt, eos nulla quasi voluptates iusto perspiciatis repellat quia facere dolorum ea illo dolor, voluptatum voluptatem consectetur, laudantium unde esse labore eveniet aliquam ratione. Molestiae unde rerum sit, a assumenda architecto necessitatibus distinctio velit magni alias voluptatem perferendis eius eligendi quam, laborum amet facilis earum ipsam soluta nobis blanditiis, incidunt itaque enim iure. Sint, facere. Sunt, ab. Optio, autem tempore corporis perferendis tenetur odit at iusto debitis eum error ipsam, a totam dolores, dolore aut iure similique deleniti illo! Accusantium corrupti delectus doloribus. Molestias nobis reprehenderit, ab magnam maiores recusandae voluptas eveniet omnis porro atque perspiciatis optio, ipsam ex praesentium eaque illo! Nostrum ratione asperiores totam. Impedit rem magni explicabo aspernatur atque ipsam mollitia minima corrupti recusandae consequatur expedita eveniet blanditiis, accusamus nulla aperiam laborum soluta hic magnam vitae iste totam, dolor adipisci. Eveniet tempora possimus expedita, voluptas numquam nulla ipsum eos totam accusamus cupiditate quod quis atque, et asperiores quia culpa, laboriosam magni ad. Suscipit aperiam natus, maxime, hic corporis veniam sint qui, neque numquam provident consequuntur necessitatibus magnam distinctio odio earum. Aut?",
         likecount: 2,
         dislikecount: 20,
       },
@@ -58,12 +85,13 @@ const MyPage = () => {
         withCredentials: true,
       })
       .then(res => {
-        const { username, secrets, viewsecret } = res.data.data;
+        const { username, secrets, viewsecret, mysecret } = res.data.data;
         setUserInfo({
           ...userInfo,
           username: username,
           secrets: secrets,
           viewSecrets: viewsecret,
+          mySecret: mysecret,
         });
       })
       .catch(err => {
@@ -94,9 +122,8 @@ const MyPage = () => {
     setByeMode(false);
   }
 
-  //임시 타이틀 나중에 수정 필요!
-  const addUserTitle = (userlv) => {
-    switch(userlv) {
+  const handleImageLander = (userLevel) => {
+    switch (userLevel) {
       case 1:
         return '입이 가벼운 소작농';
       case 2:
@@ -110,20 +137,18 @@ const MyPage = () => {
       default:
         return '???';
     }
-  };
+  }
 
   return (
     <div className="MyPage">
       {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
       {byeMode && <ByeModal open={byeMode} close={handleByeModalClose} />}
       {/* 나중에 isLogin에 따른 랜더링 넣어줘야 합니다. 지금 넣으면 테스트를 못해요 ㅜㅜ */}
-      <Nav />
       <div className='content-wrapper'>
         <div className='info-wrapper'>
-          <div className='lv-img'><img src={exampleImg} width='150' alt='nothing to show' /></div>
+          <div className='lv-img'><img src={priest} alt='nothing to show' /></div>
           <div className='my-info'>
             <div>{addUserTitle(userLevel)} {userInfo.username}</div>
-            {/* 토큰 서버에서 받아와야 합니다. api 수정 필요!! */}
             <div>소지 토큰 : 5개</div>
             <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
           </div>
@@ -132,23 +157,55 @@ const MyPage = () => {
             <button onClick={handleByeBye}>회원 탈퇴</button>
           </div>
         </div>
-        <div className='readed-secret'>
-          <ul>
-            {/* li로 뿌려주려 합니다. 서버에서 5개 받아오고 map으로 랜더링 */}
-            {userInfo.viewSecrets.map((el, idx) => {
-              const { content, likecount, dislikecount } = el;
-              
-              return (
-                <li key={idx}>
-                  <div className='content'>{content}</div>
-                  <div className='like-count'><AiFillLike /></div>
-                  <div>{likecount}</div>
-                  <div className='dislike-count'><AiFillDislike /></div>
-                  <div>{dislikecount}</div>
-                </li>
-              )
-            })}
-          </ul>
+        <div className='secrets'>
+          <div className='secret-list'>
+            <div>나의 비밀</div>
+            <ul>
+              {userInfo.mySecret.map((el, idx) => {
+                const { content, likecount, dislikecount } = el;
+                let shortened;
+                if(content.length > 80) {
+                  shortened = `${content.split('').splice(0, 81).join('')}...`
+                } else {
+                  shortened = content
+                }
+                
+                return (
+                  <li key={idx}>
+                    <div className='content'>{shortened}</div>
+                    <div className='like-count'><AiFillLike /></div>
+                    <div>{likecount}</div>
+                    <div className='dislike-count'><AiFillDislike /></div>
+                    <div>{dislikecount}</div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+          <div className='secret-list'>
+            <div>내가 본 비밀</div>
+            <ul>
+              {userInfo.viewSecrets.map((el, idx) => {
+                const { content, likecount, dislikecount } = el;
+                let shortened;
+                if(content.length > 80) {
+                  shortened = `${content.split('').splice(0, 81).join('')}...`
+                } else {
+                  shortened = content
+                }
+
+                return (
+                  <li key={idx}>
+                    <div className='content'>{shortened}</div>
+                    <div className='like-count'><AiFillLike /></div>
+                    <div>{likecount}</div>
+                    <div className='dislike-count'><AiFillDislike /></div>
+                    <div>{dislikecount}</div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

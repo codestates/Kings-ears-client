@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import LoginModal from '../modals/LoginModal'
-import SigninModal from '../modals/SigninModal'
+import SignupModal from '../modals/SignupModal'
 import './style.css'
 
 export default function VisitorButtons() {
   const [logInMode, setLogInMode] = useState(false)
-  const [signInMode, setSignInMode] = useState(false)
+  const [signupMode, setSignInMode] = useState(false)
   
   function loginHandler() {
     setLogInMode(true)
@@ -19,7 +19,7 @@ export default function VisitorButtons() {
     setLogInMode(false);
   }
 
-  const closeSigninModal = () => {
+  const closeSignupModal = () => {
     setSignInMode(false);
   }
 
@@ -31,7 +31,7 @@ export default function VisitorButtons() {
         logInMode && <LoginModal open={setLogInMode} close={closeLoginModal} />
       }
       {
-        signInMode && <SigninModal open={signInMode} close={closeSigninModal} />
+        signupMode && <SignupModal open={signupMode} close={closeSignupModal} />
       }
     </div>
   )

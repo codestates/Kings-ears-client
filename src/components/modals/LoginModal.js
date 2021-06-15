@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { FaWindowClose } from 'react-icons/fa'
 import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index.js'
+import calculateUserLevel from '../../utilities/calculateUserLevel'
 
 export default function LoginModal(props) {
   const { open, close } = props;
@@ -72,13 +73,4 @@ export default function LoginModal(props) {
       ) : null}
     </div>
   )
-}
-
-//유저 레벨 판별 함수
-function calculateUserLevel (secrets) {
-  if (secrets < 2) return 1;
-  if (2 <= secrets && secrets < 5) return 2;
-  if (5 <= secrets && secrets < 10) return 3;
-  if (10 <= secrets && secrets < 20) return 4;
-  if (20 < secrets) return 5;
 }
