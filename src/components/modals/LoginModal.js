@@ -60,7 +60,7 @@ export default function LoginModal(props) {
     <div className={ open ? 'modalSeaweed openModal' : "modalSeaweed" } >
       { open ? (
         <div className="loginBox">
-          <FaWindowClose onClick={close} className="loginModal-close-btn"/>
+          <FaWindowClose onClick={close} className="loginModal-close-btn" size={20}/>
           <form onSubmit={handleLogin}>
             <input type="email" placeholder="Email" onChange={handleEmail}></input>
             <input type="password" placeholder="Password" onChange={handlePassword}></input>

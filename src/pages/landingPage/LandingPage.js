@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeLogInStatus, getAccessToken } from '../../actions/index'
-import { useHistory } from 'react-router-dom'
 import { GiDonkey } from 'react-icons/gi'
 import MemberButtons from '../../components/memberButtons/MemberButtons'
 import VisitorButtons from '../../components/visitorButtons/VisitorButtons'
@@ -13,7 +12,6 @@ export default function LandingPage() {
   const state = useSelector(state => state.userReducer)
   const { isLogin, accessToken } = state
   const dispatch = useDispatch();
-  const history = useHistory();
 
   // Local state
   const [todaysSecrets, setTodaysSecrets] = useState(0)
@@ -41,10 +39,9 @@ export default function LandingPage() {
           })
           .catch(err => {
             dispatch(changeLogInStatus(false));
-            history.push('/unauthorized');
           })
       });
-  },[accessToken, dispatch, history]);
+  },[accessToken, dispatch]);
 
   useEffect(() => {
     verifyToken();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 import './style.css';
 import priest from '../../assets/levelimg/priest.png';
@@ -12,6 +13,7 @@ import addUserTitle from '../../utilities/addUserTitle';
 const MyPage = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
+  const history = useHistory();
   const { accessToken, userLevel } = state;
   const [pwChangeMode, setPwChangeMode] = useState(false);
   const [byeMode, setByeMode] = useState(false);
@@ -56,7 +58,7 @@ const MyPage = () => {
   });
 
   const verifyToken = useCallback(() => {
-    axios 
+    axios
       .get(`${process.env.REACT_APP_URI}/user`, {
         headers: {
           authorization: `bearer ${accessToken}`
@@ -81,9 +83,10 @@ const MyPage = () => {
           .then(res => dispatch(getAccessToken(res.data.accessToken)))
           .catch(err => {
             dispatch(changeLogInStatus(false));
+            history.push('/unauthorized');
           })
       })
-  }, [accessToken, dispatch, userInfo]);
+  }, [accessToken, dispatch, userInfo, history]);
 
   useEffect(() => {
     verifyToken();
@@ -126,7 +129,6 @@ const MyPage = () => {
     <div className="MyPage">
       {pwChangeMode && <PasswordChangeModal open={pwChangeMode} close={handleChangePwModalClose} />}
       {byeMode && <ByeModal open={byeMode} close={handleByeModalClose} />}
-      {/* 나중에 isLogin에 따른 랜더링 넣어줘야 합니다. 지금 넣으면 테스트를 못해요 ㅜㅜ */}
       <div className='content-wrapper'>
         <div className='info-wrapper'>
           <div className='lv-img'><img src={priest} alt='nothing to show' /></div>
@@ -147,12 +149,12 @@ const MyPage = () => {
               {userInfo.mySecret.map((el, idx) => {
                 const { content, likecount, dislikecount } = el;
                 let shortened;
-                if(content.length > 80) {
+                if (content.length > 80) {
                   shortened = `${content.split('').splice(0, 81).join('')}...`
                 } else {
                   shortened = content
                 }
-                
+
                 return (
                   <li key={idx}>
                     <div className='content'>{shortened}</div>
@@ -171,7 +173,7 @@ const MyPage = () => {
               {userInfo.viewSecrets.map((el, idx) => {
                 const { content, likecount, dislikecount } = el;
                 let shortened;
-                if(content.length > 80) {
+                if (content.length > 80) {
                   shortened = `${content.split('').splice(0, 81).join('')}...`
                 } else {
                   shortened = content
