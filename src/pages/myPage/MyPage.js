@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
 import axios from 'axios';
@@ -35,16 +35,6 @@ const MyPage = () => {
         likecount: 2,
         dislikecount: 20,
       },
-      {
-        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
-        likecount: 2,
-        dislikecount: 20,
-      },
-      {
-        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
-        likecount: 2,
-        dislikecount: 20,
-      },
     ],
     mySecret: [
       {
@@ -62,23 +52,12 @@ const MyPage = () => {
         likecount: 2,
         dislikecount: 20,
       },
-      {
-        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
-        likecount: 2,
-        dislikecount: 20,
-      },
-      {
-        content: `나 사실 어제 로또 1등 당첨 됐어!!!`,
-        likecount: 2,
-        dislikecount: 20,
-      },
     ],
   });
 
-  useEffect(() => {
-    axios
-      //임시 엔드포인트 나중에 수정 필요!
-      .get('https://api.cakes.com/user', {
+  const verifyToken = useCallback(() => {
+    axios 
+      .get(`${process.env.REACT_APP_URI}/user`, {
         headers: {
           authorization: `bearer ${accessToken}`
         },
@@ -96,7 +75,7 @@ const MyPage = () => {
       })
       .catch(err => {
         axios
-          .get('https://api.cakes.com/accesstoken', {
+          .get(`${process.env.REACT_APP_URI}/accesstoken`, {
             withCredentials: true,
           })
           .then(res => dispatch(getAccessToken(res.data.accessToken)))
@@ -104,7 +83,11 @@ const MyPage = () => {
             dispatch(changeLogInStatus(false));
           })
       })
-  }, [accessToken, userInfo, dispatch]);
+  }, [accessToken, dispatch, userInfo]);
+
+  useEffect(() => {
+    verifyToken();
+  }, [verifyToken]);
 
   const handleChangePw = () => {
     setPwChangeMode(true);
@@ -122,7 +105,7 @@ const MyPage = () => {
     setByeMode(false);
   }
 
-  const handleImageLander = (userLevel) => {
+  const handleImageRender = (userLevel) => {
     switch (userLevel) {
       case 1:
         return '입이 가벼운 소작농';
