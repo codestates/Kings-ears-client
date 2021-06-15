@@ -42,7 +42,7 @@ export default function NewSecret() {
         })
         .catch(err => {
           // (4) access token 만료로인해 새로 요청해야 할 경우
-          if (err.status === 403) {
+          if (err.response.status === 403) {
             axios
               .get(`${process.env.REACT_APP_URI}/accesstoken`, {
                 withCredentials: true
