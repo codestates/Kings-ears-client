@@ -39,11 +39,8 @@ export default function LandingPage() {
             dispatch(changeLogInStatus(true));
           })
           .catch(err => {
-            if (err.response.status === 403) {
               dispatch(changeLogInStatus(false));
-            } else {
               console.log(err);
-            }
           })
       });
   },[accessToken, dispatch]);
