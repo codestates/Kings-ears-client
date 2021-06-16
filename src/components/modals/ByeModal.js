@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FaWindowClose } from 'react-icons/fa';
-import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index';
+import { changeLogInStatus, getAccessToken } from '../../actions/index';
 
 const ByeModal = props => {
     const dispatch = useDispatch();
@@ -30,7 +30,6 @@ const ByeModal = props => {
                 setByeSuccess(true);
                 dispatch(changeLogInStatus(false));
                 dispatch(getAccessToken(''));
-                dispatch(getUserLevel(0));
                 window.setTimeout(() => history.push('/'), 3000);
             })
             .catch(err => {

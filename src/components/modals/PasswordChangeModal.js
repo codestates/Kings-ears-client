@@ -3,7 +3,7 @@ import { FaWindowClose } from 'react-icons/fa';
 import { passwordCheck } from '../../utilities/checkAvailable';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index';
+import { changeLogInStatus, getAccessToken } from '../../actions/index';
 import './style.css';
 import axios from 'axios';
 
@@ -73,7 +73,6 @@ const PasswordChangeModal = props => {
                         //비밀번호가 변경 되었으니까 로그인 해제
                         dispatch(changeLogInStatus(false));
                         dispatch(getAccessToken(''));
-                        dispatch(getUserLevel(0));
                     })
                     .catch(err => console.log(err));
             })

@@ -14,12 +14,14 @@ import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
 import ByeModal from '../../components/modals/ByeModal';
 import { getAccessToken, changeLogInStatus } from '../../actions/index';
 import addUserTitle from '../../utilities/addUserTitle';
+import calculateUserLevel from '../../utilities/calculateUserLevel';
 
 const MyPage = () => {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
   const history = useHistory();
-  const { accessToken, userLevel } = state;
+  const { accessToken } = state;
+  const [userLevel, setUserLevel] = useState(0);
   const [pwChangeMode, setPwChangeMode] = useState(false);
   const [byeMode, setByeMode] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -79,6 +81,7 @@ const MyPage = () => {
           viewSecrets: viewsecret,
           mySecret: mysecret,
         });
+        setUserLevel(calculateUserLevel(secrets)); 
       })
       .catch(err => {
         axios
