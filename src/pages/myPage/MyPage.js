@@ -111,15 +111,17 @@ const MyPage = () => {
   const handleImageRender = (userLevel) => {
     switch (userLevel) {
       case 1:
-        return '입이 가벼운 소작농';
+        return 'Lv.1 소식이 늦은 소작농';
       case 2:
-        return '떠벌이 상인';
+        return 'Lv.2 떠벌이 상인';
       case 3:
-        return '숨기는게 없는 귀족';
+        return 'Lv.3 소문이 궁금한 기사';
       case 4:
-        return '엔들리스 고해성사 중인 성직자';
+        return 'Lv.4 가십에 민감한 귀족';
       case 5:
-        return '킹동키';
+        return 'Lv.5 비밀을 아는 성직자';
+      case 6:
+        return '킹덩키'
       default:
         return '???';
     }
