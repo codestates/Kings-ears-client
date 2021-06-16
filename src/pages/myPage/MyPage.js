@@ -97,15 +97,16 @@ const MyPage = () => {
         withCredentials: true,
       })
       .then(res => {
-        const { username, secrets, viewsecret, mysecret } = res.data.data;
+        const { username, secrets, viewsecret, mysecret, rankOne } = res.data.data;
         setUserInfo({
           ...userInfo,
           username: username,
           secrets: secrets,
+          rankOne: rankOne,
           viewSecrets: viewsecret,
           mySecret: mysecret,
         });
-        setUserLevel(calculateUserLevel(secrets)); 
+        setUserLevel(calculateUserLevel(secrets, rankOne)); 
       })
       .catch(err => {
         axios
