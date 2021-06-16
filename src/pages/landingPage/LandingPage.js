@@ -19,36 +19,36 @@ export default function LandingPage() {
   const [todaysSecrets, setTodaysSecrets] = useState(0)
   const [kingDonkey, setKingDongkey] = useState('김코딩')
 
-  // const verifyToken = useCallback(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_URI}/verification`, {
-  //       withCredentials: true,
-  //       headers: {
-  //         authorization: `bearer ${accessToken}`
-  //       }
-  //     })
-  //     .then(res => {
-  //       dispatch(changeLogInStatus(true));
-  //     })
-  //     .catch(err => {
-  //       axios
-  //         .get(`${process.env.REACT_APP_URI}/accesstoken`, {
-  //           withCredentials: true,
-  //         })
-  //         .then(res => {
-  //           dispatch(getAccessToken(res.data.accessToken));
-  //           dispatch(changeLogInStatus(true));
-  //         })
-  //         .catch(err => {
-  //             dispatch(changeLogInStatus(false));
-  //             console.log(err);
-  //         })
-  //     });
-  // },[accessToken, dispatch]);
+  const verifyToken = useCallback(() => {
+    axios
+      .get(`${process.env.REACT_APP_URI}/verification`, {
+        withCredentials: true,
+        headers: {
+          authorization: `bearer ${accessToken}`
+        }
+      })
+      .then(res => {
+        dispatch(changeLogInStatus(true));
+      })
+      .catch(err => {
+        axios
+          .get(`${process.env.REACT_APP_URI}/accesstoken`, {
+            withCredentials: true,
+          })
+          .then(res => {
+            dispatch(getAccessToken(res.data.accessToken));
+            dispatch(changeLogInStatus(true));
+          })
+          .catch(err => {
+              dispatch(changeLogInStatus(false));
+              console.log(err);
+          })
+      });
+  },[accessToken, dispatch]);
 
-  // useEffect(() => {
-  //   verifyToken();
-  // }, [verifyToken]);
+  useEffect(() => {
+    verifyToken();
+  }, [verifyToken]);
 
   useEffect(() => {
     axios
