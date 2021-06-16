@@ -8,6 +8,7 @@ import Nav from './components/nav/Nav';
 import backgroundVideo from './assets/background.mp4'
 import { useSelector } from 'react-redux'
 import Unauthorized from './pages/unauthorized/Unauthorized';
+import LandingPageInfo from './pages/landingPage/LandingPageInfo';
 
 function App() {
   // Redux 관련
@@ -21,6 +22,7 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <LandingPage />
+              <LandingPageInfo />
             </Route>
             <Route path='/mypage'>
               <MyPage />
