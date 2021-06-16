@@ -67,7 +67,7 @@ const ByeModal = props => {
                                             <div>회원 탈퇴를 진행 하시겠습니까?</div>
                                             <div>회원 탈퇴시 작성 하셨던 모든 비밀이 사라집니다</div>
                                             <input type='password' placeholder='비밀번호를 입력해 주세요' onChange={handlePwInput}></input>
-                                            {errMessage && <div className='alert-box'>{errMessage}</div>}
+                                            {errMessage && <div className='alert-box bye'>{errMessage}</div>}
                                         </div>
                                         <div className='button-container'>
                                             <button onClick={handleByeBtn}>예</button>
