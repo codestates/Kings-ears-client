@@ -43,7 +43,7 @@ export default function LoginModal(props) {
     )
     .then ( res => {
       // 전역 변수 변경 (유저레벨, 로그인 상태, 토큰 상태)
-      let userLevel = calculateUserLevel(res.data.secrets)
+      let userLevel = calculateUserLevel(res.data.data.secrets)
       dispatch(getUserLevel(userLevel)) 
       dispatch(changeLogInStatus(true))
       dispatch(getAccessToken(res.data.accessToken))
