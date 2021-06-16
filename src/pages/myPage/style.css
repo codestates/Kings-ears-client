@@ -4,11 +4,11 @@
     color: var(--white-color);
     background: linear-gradient(180deg, #324f4dd0, #1a2d2bd0); 
     border-radius: 10px;
+    display: flex;
+    max-width: 1000px;
+    width: 100%;
 }
 
-.content-wrapper {
-    display: flex;
-}
 
 .info-wrapper {
     display: flex;
@@ -16,7 +16,7 @@
     justify-content: flex-end;
     align-items: center;
     padding: 1rem;
-    row-gap: 3rem;
+    row-gap: 1rem;
 }
 
 .lv-img img {
@@ -24,63 +24,81 @@
     max-height: 350px;
 }
 
-.my-info div {
-    margin-bottom: 0.5rem;
+.my-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
 }
 
+.my-info div {
+    text-align: center;
+}
 .my-info div:nth-child(1) {
     font-weight: bold;
     font-size: 1.2rem;
-    margin-bottom: 1rem;
-}
-
-.my-info div:nth-child(n + 2) {
-    padding-left: 1rem;
 }
 
 .secrets {
+    width: 100%;
+    height: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     row-gap: 1rem;
     background: #f9f8ecd5;
-    width: 100%;
-    height: 100%;
     padding: 1rem;
     border-radius: 0 10px 10px 0;
     align-self: center;
 }
 
 .secret-list {
+    width: 100%;
+    height: 100%;
+    min-height: 268px;
     border: solid 1px var(--dark-main-color);
     border-radius: 10px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
-.secret-list > div {
+.secret-list-title {
     color: var(--white-color);
     background: var(--dark-main-color);
     text-align: center;
     padding: 0.3rem;
 }
 
+.secret-list ul {
+    width: 100%;
+    height: 100%;
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
 .secret-list ul li {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 7fr 1fr;
     column-gap: 0.3rem;
     color: var(--medium-dark-color);
     transition: 0.2s;
-    padding: 0.2rem 1rem;
-
+    padding: 0.3rem 0.3rem;
 }
 
-.secret-list ul li .content {  
-    width: 550px;
-    height: 3.5em;
+.secret-list ul li .content { 
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.like-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.5rem;
 }
 
 .secret-list ul li:hover {
