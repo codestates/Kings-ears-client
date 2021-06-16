@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import './style.css'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { ImHome3 } from 'react-icons/im'
@@ -13,10 +13,11 @@ export default function Nav() {
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
   const { accessToken } = state;
+  const history = useHistory();
 
   function handleLogOut() {
     axios
-      .get(`${process.env.REACT_APP_URI}/singout`, {
+      .get(`${process.env.REACT_APP_URI}/signout`, {
         withCredentials: true,
         headers: {
           authorization: `bearer ${accessToken}`
@@ -24,6 +25,7 @@ export default function Nav() {
       })
       .then(res => {
         dispatch(changeLogInStatus(false));
+        history.push('/');
       })
       .catch(err => console.log(err));
   }

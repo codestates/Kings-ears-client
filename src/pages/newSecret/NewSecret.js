@@ -38,8 +38,12 @@ export default function NewSecret() {
             dispatch(changeLogInStatus(true));
           })
           .catch(err => {
-            dispatch(changeLogInStatus(false));
-            history.push('/unauthorized');
+            if (err.response.status === 403) {
+              dispatch(changeLogInStatus(false));
+              history.push('/unauthorized');
+            } else {
+              console.log(err);
+            }
           })
       });
   },[accessToken, dispatch, history]);
