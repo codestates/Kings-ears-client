@@ -5,8 +5,7 @@
   display: flex;
   border-radius: 999px;
   padding: 2rem 1rem;
-  background-color: var(--dark-main-color);
-  opacity: 0.8;
+  background-color: #1a2d2bce;
   color: var(--white-color);
   right: 50px;
   top: 35%;
