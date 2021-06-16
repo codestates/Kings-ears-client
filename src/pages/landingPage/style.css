@@ -2,17 +2,21 @@
 
 .LandingPage {
   width: 100vw;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.LandingPage-upper {
+  width: 100%;
   height: 100vh;
-  position: relative;
   padding: 2rem;
+  position: relative;
   color: var(--white-color);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   row-gap: 1.5rem;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
 }
 
 .LandingPage-welcome {

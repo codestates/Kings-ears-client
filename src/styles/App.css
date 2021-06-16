@@ -21,6 +21,9 @@ h1 {
 }
 
 .App {
+  width: 100vw;
+  min-height: 100vh;
+  height: auto;
   overflow: hidden;
   display: flex;
   flex-direction: column;
