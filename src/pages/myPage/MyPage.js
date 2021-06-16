@@ -95,7 +95,7 @@ const MyPage = () => {
             }
           });
       });
-  }, [accessToken, dispatch, history]);
+  }, [dispatch, history]);
 
   useEffect(() => {
     verifyToken();

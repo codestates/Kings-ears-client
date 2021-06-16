@@ -78,7 +78,7 @@ const PasswordChangeModal = props => {
                     .catch(err => console.log(err));
             })
             .catch(err => {
-                if (err.status === 404) setErrMessage('4');
+                if (err.response.status === 404) setErrMessage('4');
             });
     }
 
