@@ -31,7 +31,7 @@ const SignupModal = props => {
       return;
     }
 
-    if(!checkAll(username, email, password)) {
+    if (!checkAll(username, email, password)) {
       setErrMessage('invalid');
       return;
     }
@@ -112,43 +112,43 @@ const SignupModal = props => {
             </div>
           ) : (
             <form>
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={handleInputValue('username')}
-              onBlur={() => setValidMessage(usernameCheck(userInput.username))}
-            ></input>
-            {validMessage === '3' || validMessage === '4' ?
-              handleValidation(validMessage)
-              : <div className='alert-box'></div>
-            }
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={handleInputValue('email')}
-              onBlur={() => setValidMessage(emailCheck(userInput.email))}
-            ></input>
-            {validMessage === '5' ?
-              handleValidation(validMessage)
-              : <div className='alert-box'></div>
-            }
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={handleInputValue('password')}
-              onBlur={() => setValidMessage(passwordCheck(userInput.password))}
-            ></input>
-            {validMessage === '1' || validMessage === '2' ?
-              handleValidation(validMessage)
-              : <div className='alert-box'></div>
-            }
-            <button type="submit" onClick={handleSignup}>회원가입</button>
-            {errMessage ?
-              handleErrMessage(errMessage)
-              : <div className='alert-box error'></div>
-            }
-          </form>
-          )}  
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={handleInputValue('username')}
+                onBlur={() => setValidMessage(usernameCheck(userInput.username))}
+              ></input>
+              {validMessage === '3' || validMessage === '4' ?
+                handleValidation(validMessage)
+                : <div className='alert-box'></div>
+              }
+              <input
+                type="text"
+                placeholder="Email"
+                onChange={handleInputValue('email')}
+                onBlur={() => setValidMessage(emailCheck(userInput.email))}
+              ></input>
+              {validMessage === '5' ?
+                handleValidation(validMessage)
+                : <div className='alert-box'></div>
+              }
+              <input
+                type="password"
+                placeholder="Password"
+                onChange={handleInputValue('password')}
+                onBlur={() => setValidMessage(passwordCheck(userInput.password))}
+              ></input>
+              {validMessage === '1' || validMessage === '2' ?
+                handleValidation(validMessage)
+                : <div className='alert-box'></div>
+              }
+              <button type="submit" onClick={handleSignup}>회원가입</button>
+              {errMessage ?
+                handleErrMessage(errMessage)
+                : <div className='alert-box error'></div>
+              }
+            </form>
+          )}
         </div>
       ) : null}
     </div>
