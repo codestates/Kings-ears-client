@@ -5,6 +5,7 @@ import './style.css'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { ImHome3 } from 'react-icons/im'
 import { RiUserHeartLine } from 'react-icons/ri'
+import Tooltip from '../tooltip/Tooltip'
 import axios from 'axios'
 import { changeLogInStatus } from '../../actions/index'
 
@@ -29,9 +30,18 @@ export default function Nav() {
   return (
     <nav className="Nav">
       <ul>
-        <li><Link to="/"><ImHome3 /></Link></li>
-        <li><Link to="/mypage"><RiUserHeartLine /></Link></li>
-        <li><HiOutlineLogout onClick={handleLogOut} /></li>
+        <li>
+          <Link to="/"><ImHome3/></Link>
+          <Tooltip text={`홈`}/>
+        </li>
+        <li>
+          <Link to="/mypage"><RiUserHeartLine/></Link>
+          <Tooltip text={`마이페이지`}/>
+        </li>
+        <li>
+          <HiOutlineLogout onClick={handleLogOut}/>
+          <Tooltip text={`로그아웃`}/>
+        </li>
       </ul>
     </nav>
   )
