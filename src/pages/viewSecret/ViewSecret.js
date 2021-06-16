@@ -51,7 +51,34 @@ export default function ViewSecret() {
   }, [verifyToken]);
 
   const handleShowSecret = (e) => {
-    // 서버 요청: 비밀 가져오기
+    // 서버 요청: 비밀 가져오기 
+    axios
+      .get(`${process.env.REACT_APP_URI}/verification`, {
+        withCredentials: true,
+        headers: {
+          authorization: `bearer ${accessToken}`
+        }
+      })
+      .then(res => dispatch(changeLogInStatus(true)))
+      .catch(err => {
+        axios
+          .get(`${process.env.REACT_APP_URI}/accesstoken`, {
+            withCredentials: true,
+          })
+          .then(res => {
+            dispatch(changeLogInStatus(true));
+            dispatch(getAccessToken(res.data.accessToken))
+          })
+          .catch(err => {
+            if(err.response.status === 403) {
+              dispatch(changeLogInStatus(false));
+              history.push('/unauthorized');
+            } else {
+              console.log(err);
+            }
+          })
+      })
+
     axios.get(`${process.env.REACT_APP_URI}/secret`,
       {
         headers:

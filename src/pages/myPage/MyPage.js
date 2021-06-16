@@ -5,6 +5,11 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios';
 import './style.css';
 import priest from '../../assets/levelimg/priest.png';
+import aristocrat from '../../assets/levelimg/aristocrat.png';
+import peasant from '../../assets/levelimg/peasant.gif';
+import merchant from '../../assets/levelimg/merchant.png';
+import knight from '../../assets/levelimg/knight.png';
+import KingDonkey from '../../assets/levelimg/KingDonkey.png';
 import PasswordChangeModal from '../../components/modals/PasswordChangeModal';
 import ByeModal from '../../components/modals/ByeModal';
 import { getAccessToken, changeLogInStatus } from '../../actions/index';
@@ -82,11 +87,15 @@ const MyPage = () => {
           })
           .then(res => dispatch(getAccessToken(res.data.accessToken)))
           .catch(err => {
-            dispatch(changeLogInStatus(false));
-            history.push('/unauthorized');
-          })
-      })
-  }, [accessToken, dispatch, userInfo, history]);
+            if (err.response.status === 403) {
+              dispatch(changeLogInStatus(false));
+              history.push('/unauthorized');
+            } else {
+              console.log(err);
+            }
+          });
+      });
+  }, [accessToken, dispatch, history]);
 
   useEffect(() => {
     verifyToken();
@@ -111,17 +120,17 @@ const MyPage = () => {
   const handleImageRender = (userLevel) => {
     switch (userLevel) {
       case 1:
-        return 'Lv.1 소식이 늦은 소작농';
+        return peasant;
       case 2:
-        return 'Lv.2 떠벌이 상인';
+        return merchant;
       case 3:
-        return 'Lv.3 소문이 궁금한 기사';
+        return knight;
       case 4:
-        return 'Lv.4 가십에 민감한 귀족';
+        return aristocrat;
       case 5:
-        return 'Lv.5 비밀을 아는 성직자';
+        return priest;
       case 6:
-        return '킹덩키'
+        return KingDonkey;
       default:
         return '???';
     }
@@ -133,10 +142,9 @@ const MyPage = () => {
       {byeMode && <ByeModal open={byeMode} close={handleByeModalClose} />}
       <div className='content-wrapper'>
         <div className='info-wrapper'>
-          <div className='lv-img'><img src={priest} alt='nothing to show' /></div>
+          <div className='lv-img'><img src={handleImageRender(userLevel)} alt='nothing to show' /></div>
           <div className='my-info'>
             <div>{addUserTitle(userLevel)} {userInfo.username}</div>
-            <div>소지 토큰 : 5개</div>
             <div>내가 쓴 비밀 : {userInfo.secrets}개</div>
           </div>
           <div className='button-wrapper'>
@@ -149,10 +157,10 @@ const MyPage = () => {
             <div>나의 비밀</div>
             <ul>
               {userInfo.mySecret.map((el, idx) => {
-                const { content, likecount, dislikecount } = el;
+                const { content, likeCount, dislikeCount } = el;
                 let shortened;
                 if (content.length > 80) {
-                  shortened = `${content.split('').splice(0, 81).join('')}...`
+                  shortened = `${content.split('').splice(0, 80).join('')}...`
                 } else {
                   shortened = content
                 }
@@ -161,9 +169,9 @@ const MyPage = () => {
                   <li key={idx}>
                     <div className='content'>{shortened}</div>
                     <div className='like-count'><AiFillLike /></div>
-                    <div>{likecount}</div>
+                    <div>{likeCount}</div>
                     <div className='dislike-count'><AiFillDislike /></div>
-                    <div>{dislikecount}</div>
+                    <div>{dislikeCount}</div>
                   </li>
                 )
               })}
@@ -173,10 +181,10 @@ const MyPage = () => {
             <div>내가 본 비밀</div>
             <ul>
               {userInfo.viewSecrets.map((el, idx) => {
-                const { content, likecount, dislikecount } = el;
+                const { content, likeCount, dislikeCount } = el;
                 let shortened;
                 if (content.length > 80) {
-                  shortened = `${content.split('').splice(0, 81).join('')}...`
+                  shortened = `${content.split('').splice(0, 80).join('')}...`
                 } else {
                   shortened = content
                 }
@@ -185,9 +193,9 @@ const MyPage = () => {
                   <li key={idx}>
                     <div className='content'>{shortened}</div>
                     <div className='like-count'><AiFillLike /></div>
-                    <div>{likecount}</div>
+                    <div>{likeCount}</div>
                     <div className='dislike-count'><AiFillDislike /></div>
-                    <div>{dislikecount}</div>
+                    <div>{dislikeCount}</div>
                   </li>
                 )
               })}
