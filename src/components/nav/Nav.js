@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import './style.css'
@@ -10,12 +10,13 @@ import axios from 'axios'
 import { changeLogInStatus } from '../../actions/index'
 
 export default function Nav() {
+  // Global state
   const dispatch = useDispatch();
   const state = useSelector(state => state.userReducer);
   const { accessToken } = state;
   const history = useHistory();
 
-  function handleLogOut() {
+  const handleLogOut = () => {
     axios
       .get(`${process.env.REACT_APP_URI}/signout`, {
         withCredentials: true,
@@ -29,6 +30,7 @@ export default function Nav() {
       })
       .catch(err => console.log(err));
   }
+
   return (
     <nav className="Nav">
       <ul>

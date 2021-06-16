@@ -2,22 +2,24 @@
 
 .Nav {
   position: absolute;
-  right: 20px;
-  top: 20%;
+  top: 0px;
+  right: 2rem;
   display: flex;
-  border-radius: 999px;
-  padding: 2rem 1rem;
-  background-color: #1a2d2bce;
-  color: var(--white-color);
-  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  background: var(--medium-dark-color) ;
+  color: rgba(255, 255, 255, 0.849);
+  font-size: 1.5rem;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .Nav > ul {
   display: flex;
-  flex-direction: column;
   list-style: none;
-  row-gap: 1rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
+  column-gap: 2rem;
 }
 
 .Nav li {
@@ -26,7 +28,7 @@
 
 .Nav li:hover, Nav a:hover {
   cursor: pointer;
-  transform: translateY(-5px);
+  transform: translateY(-2px);
   color: var(--highlight-color);
 }
 
