@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios'
-import './style.css'
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
+import './style.css';
 import { changeLogInStatus, getAccessToken } from '../../actions';
 import GuidanceModal from '../../components/modals/GuidanceModal';
 
@@ -10,29 +11,62 @@ export default function NewSecret() {
   const dispatch = useDispatch()
   const state = useSelector(state => state.userReducer)
   const { isLogin, accessToken } = state
+  const history = useHistory();
 
   // 로컬 상태
   const [mode, setMode] = useState('writing')
   const [secret, setSecret] = useState('')
 
+  const verifyToken = useCallback(() => {
+    axios
+      .get(`${process.env.REACT_APP_URI}/verification`, {
+        withCredentials: true,
+        headers: {
+          authorization: `bearer ${accessToken}`
+        }
+      })
+      .then(res => {
+        dispatch(changeLogInStatus(true));
+      })
+      .catch(err => {
+        axios
+          .get(`${process.env.REACT_APP_URI}/accesstoken`, {
+            withCredentials: true,
+          })
+          .then(res => {
+            dispatch(getAccessToken(res.data.accessToken));
+            dispatch(changeLogInStatus(true));
+          })
+          .catch(err => {
+            dispatch(changeLogInStatus(false));
+            history.push('/unauthorized');
+          })
+      });
+  },[accessToken, dispatch, history]);
+
+  useEffect(() => {
+    verifyToken();
+  }, [verifyToken]);
+
   const handleNewSecretSubmit = (e) => {
     e.preventDefault()
 
     // 로그인 상태인 경우: 글 작성 가능
-    if ( isLogin === true ) {
+    if (isLogin === true) {
       // (1) 비밀란을 비웠을 경우
-      if ( secret === '' ) {
+      if (secret === '') {
         setMode('secret not written')
         return;
       }
-      
+
       // (2) 비밀이 제대로 작성되었을 경우
       axios
         .post(
-          `${process.env.REACT_APP_URI}/newsecret`, 
-          { content: secret }, 
-          { headers: 
-            { authorization: `bearer ${ accessToken }` },
+          `${process.env.REACT_APP_URI}/newsecret`,
+          { content: secret },
+          {
+            headers:
+              { authorization: `bearer ${accessToken}` },
             withCredentials: true
           }
         )
@@ -47,14 +81,15 @@ export default function NewSecret() {
               .get(`${process.env.REACT_APP_URI}/accesstoken`, {
                 withCredentials: true
               })
-              .then( res => {
+              .then(res => {
                 dispatch(getAccessToken(res.data.accessToken))
                 axios
                   .post(
-                    `${process.env.REACT_APP_URI}/newsecret`, 
-                    { content: secret }, 
-                    { headers: 
-                      { authorization: `bearer ${ accessToken }` },
+                    `${process.env.REACT_APP_URI}/newsecret`,
+                    { content: secret },
+                    {
+                      headers:
+                        { authorization: `bearer ${accessToken}` },
                       withCredentials: true
                     }
                   )
@@ -78,17 +113,17 @@ export default function NewSecret() {
         })
     }
   }
-  
+
   const handleWriting = (e) => {
     setSecret(e.target.value)
   }
 
   return (
     <div className="NewSecret">
-      { mode !== 'writing' && <GuidanceModal mode={ mode } setMode={ setMode }/>}
-      <form className="NewSecret-form" onSubmit={ handleNewSecretSubmit }>
-        <textarea 
-          onChange={ handleWriting }
+      { mode !== 'writing' && <GuidanceModal mode={mode} setMode={setMode} />}
+      <form className="NewSecret-form" onSubmit={handleNewSecretSubmit}>
+        <textarea
+          onChange={handleWriting}
           placeholder="비밀을 작성하세요!"
           maxLength="255"
           rows="5"

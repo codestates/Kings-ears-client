@@ -6,7 +6,7 @@
     border-radius: 10px;
 }
 
-.MyPage .content-wrapper {
+.content-wrapper {
     display: flex;
 }
 
@@ -21,7 +21,7 @@
 
 .lv-img img {
     object-fit: cover;
-    height: 350px;
+    max-height: 350px;
 }
 
 .my-info div {
@@ -47,6 +47,7 @@
     height: 100%;
     padding: 1rem;
     border-radius: 0 10px 10px 0;
+    align-self: center;
 }
 
 .secret-list {
@@ -77,7 +78,6 @@
 .secret-list ul li .content {  
     width: 550px;
     height: 3.5em;
-    overflow: hidden;
     display: flex;
     justify-content: flex-start;
     align-items: center;

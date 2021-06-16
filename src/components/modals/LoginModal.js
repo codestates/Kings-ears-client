@@ -1,15 +1,14 @@
 import axios from 'axios'
 import './style.css'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { FaWindowClose } from 'react-icons/fa'
 import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index.js'
 import calculateUserLevel from '../../utilities/calculateUserLevel'
 
 export default function LoginModal(props) {
   const { open, close } = props;
-  const state = useSelector(state => state.userReducer)
   const dispatch = useDispatch()
 
   // 로컬 변수
@@ -61,7 +60,7 @@ export default function LoginModal(props) {
     <div className={ open ? 'modalSeaweed openModal' : "modalSeaweed" } >
       { open ? (
         <div className="loginBox">
-          <FaWindowClose onClick={close} className="loginModal-close-btn"/>
+          <FaWindowClose onClick={close} className="loginModal-close-btn" size={20}/>
           <form onSubmit={handleLogin}>
             <input type="email" placeholder="Email" onChange={handleEmail}></input>
             <input type="password" placeholder="Password" onChange={handlePassword}></input>

@@ -48,6 +48,8 @@
   padding: 0.5rem 1rem;
   border-radius: 999px;
   border:none;
+  letter-spacing: 0px;
+  font-size: 0.8rem;
   background-color: var(--white-color);
   position: relative;
   top: 60px;
@@ -343,6 +345,7 @@
 }
 
 .loginBox {
+  border-radius: 20px;
   width: 400px;
   height: auto;
   padding: 2rem;
@@ -361,16 +364,17 @@
   row-gap: 1rem;
 }
 
-.loginModal-close-btn {
+.loginBox .loginModal-close-btn {
+  color: var(--white-color);
   position: absolute;
-  top: 10px;
-  right: 10px;
-  color: rgb(230, 230, 230);
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .2s;
 }
 
-.loginModal-close-btn:hover {
+.loginBox .loginModal-close-btn:hover {
   cursor: pointer;
-  color: var(--white-color);
+  color: var(--highlight-color);
 }
 
 .loginBox form input {
