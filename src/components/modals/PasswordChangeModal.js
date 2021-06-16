@@ -50,7 +50,7 @@ const PasswordChangeModal = props => {
         }
 
         axios
-            .patch('https://api.cakes.com/changepw', {
+            .patch(`${process.env.REACT_APP_URI}/changepw`, {
                 currentpassword: curPw,
                 newpassword: changePw,
             },
@@ -63,7 +63,7 @@ const PasswordChangeModal = props => {
             .then(() => setChangeSuccess(true))
             .then(() => {
                 axios
-                    .get('https://api.cakes.com/signout', {
+                    .get(`${process.env.REACT_APP_URI}/signout`, {
                         headers: {
                             authorization: `bearer ${accessToken}`,
                         },
@@ -72,6 +72,8 @@ const PasswordChangeModal = props => {
                     .then(() => {
                         //비밀번호가 변경 되었으니까 로그인 해제
                         dispatch(changeLogInStatus(false));
+                        dispatch(getAccessToken(''));
+                        dispatch(getUserLevel(0));
                     })
                     .catch(err => console.log(err));
             })
