@@ -3,7 +3,7 @@ import { FaWindowClose } from 'react-icons/fa';
 import { passwordCheck } from '../../utilities/checkAvailable';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { changeLogInStatus } from '../../actions/index';
+import { changeLogInStatus, getAccessToken, getUserLevel } from '../../actions/index';
 import './style.css';
 import axios from 'axios';
 
