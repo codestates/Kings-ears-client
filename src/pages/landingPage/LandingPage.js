@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeLogInStatus, getAccessToken } from '../../actions/index'
-import { GiDonkey } from 'react-icons/gi'
+import { GiDonkey, GiSecretBook } from 'react-icons/gi'
+import { BiCrown } from 'react-icons/bi'
 import MemberButtons from '../../components/memberButtons/MemberButtons'
 import VisitorButtons from '../../components/visitorButtons/VisitorButtons'
 import './style.css'
@@ -65,13 +66,13 @@ export default function LandingPage() {
     <div className="LandingPage">
       <div className="LandingPage-welcome">
         <h1>"임금님 귀는 당나귀 귀!"</h1>
-        <div>덩키킹덤에 오신 걸 환영합니다! <GiDonkey /> </div>
+        <div>임금님귀(King's Ears)에 오신 걸 환영합니다! <GiDonkey /> </div>
         <div>사소하지만 너무 말하고 싶었던 TMI, 아무도 모르게 털어놓으세요!</div>
       </div>
-      <ul className="LandingPage-info">
-        <li>오늘의 킹덩키: {kingDonkey}</li>
-        <li>오늘의 새로운 비밀: {todaysSecrets}개</li>
-      </ul>
+        <ul className="LandingPage-info">
+          <li><BiCrown/> 오늘의 킹덩키: {kingDonkey}</li>
+          <li><GiSecretBook/> 오늘의 새로운 비밀: {todaysSecrets}개</li>
+        </ul>
       {
         isLogin ?
           <MemberButtons /> :

@@ -138,10 +138,10 @@
 }
 
 .landing-modal-buttons button {
-  width: 145px;
-  padding: 1rem 2rem;
+  width: 140px;
+  padding: 0.7rem 2rem;
   letter-spacing: 2px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 999px;
   background-color: var(--highlight-color);
   border: none;
