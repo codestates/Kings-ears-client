@@ -54,7 +54,7 @@ const ByeModal = props => {
                     {loginStatus ? (
                         <React.Fragment>
                             {byeSuccess ? (
-                                <div class='message'>
+                                <div className='message'>
                                     <div>회원 탈퇴가 성공 하였습니다</div>
                                     <div>잠시후 메인 페이지로 이동 됩니다</div>
                                 </div>

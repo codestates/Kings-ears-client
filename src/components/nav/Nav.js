@@ -7,7 +7,7 @@ import { ImHome3 } from 'react-icons/im'
 import { RiUserHeartLine } from 'react-icons/ri'
 import Tooltip from '../tooltip/Tooltip'
 import axios from 'axios'
-import { changeLogInStatus } from '../../actions/index'
+import { changeLogInStatus, getAccessToken } from '../../actions/index'
 
 export default function Nav() {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ export default function Nav() {
       })
       .then(res => {
         dispatch(changeLogInStatus(false));
+        dispatch(getAccessToken(''));
         history.push('/');
       })
       .catch(err => console.log(err));

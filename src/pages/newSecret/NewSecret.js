@@ -109,6 +109,7 @@ export default function NewSecret() {
               .catch(err => {
                 //만약 access token 요청 실패한 경우 로그인 상태 변경해주기
                 dispatch(changeLogInStatus(false))
+                dispatch(getAccessToken(''))
               })
           } else {
             // 그 외의 에러가 발생했을 경우
