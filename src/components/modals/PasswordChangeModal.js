@@ -50,15 +50,13 @@ const PasswordChangeModal = props => {
         }
 
         axios
-            .patch(`${process.env.REACT_APP_URI}/changepw`, {
-                currentpassword: curPw,
-                newpassword: changePw,
-            },
+            .patch(`${process.env.REACT_APP_URI}/changepw`,
                 {
-                    headers: {
-                        authorization: `bearer ${accessToken}`,
-                        'Content-Type': 'application/json',
-                    },
+                    currentpassword: curPw,
+                    newpassword: changePw,
+                },
+                {
+                    withCredentials: true,
                 })
             .then(() => setChangeSuccess(true))
             .then(() => {
