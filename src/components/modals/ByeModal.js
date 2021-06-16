@@ -33,14 +33,15 @@ const ByeModal = props => {
                 window.setTimeout(() => history.push('/'), 3000);
             })
             .catch(err => {
-                if (err.status === 404) {
-                    setErrMessage('비밀번호가 다릅니다 다시 입력해 주세요')
+                if (err.response.status === 404) {
+                    setErrMessage('비밀번호가 다릅니다 다시 입력해 주세요');
                     return;
                 }
 
-                if (err.status === 403) {
+                if (err.response.status === 403) {
                     setLoginStatus(false);
                     dispatch(changeLogInStatus(false));
+                    dispatch(getAccessToken(''));
                     window.setTimeout(() => history.push('/'), 3000);
                     return;
                 }
