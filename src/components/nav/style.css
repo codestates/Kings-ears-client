@@ -2,13 +2,13 @@
 
 .Nav {
   position: absolute;
+  right: 20px;
+  top: 20%;
   display: flex;
   border-radius: 999px;
   padding: 2rem 1rem;
   background-color: #1a2d2bce;
   color: var(--white-color);
-  right: 50px;
-  top: 35%;
   box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
 }
 
