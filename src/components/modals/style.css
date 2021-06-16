@@ -129,6 +129,11 @@
   top: 43px;
 }
 
+.alert-box.bye {
+  position: relative;
+  top: 30px;
+}
+
 .landing-modal-buttons {
   display: flex;
   justify-content: center;
