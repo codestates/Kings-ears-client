@@ -1,0 +1,138 @@
+@import "../../styles/App.css";
+
+.LandingPage {
+  width: 100vw;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.LandingPage-upper {
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  position: relative;
+  color: var(--white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 1.5rem;
+}
+
+.LandingPage-welcome {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.LandingPage-welcome > h1 {
+  font-size: 5rem;
+}
+
+.LandingPage-welcome > div {
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/*--킹덩키, 오늘의 비밀--*/
+.LandingPage-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 3rem;
+  background: #1a2d2bd2;
+  color: var(--white-color);
+  list-style: none;
+  column-gap: 2rem;
+  border-radius: 20px;
+  margin-top: 1rem;
+}
+
+/*-- 서비스 정보 색션--*/
+.LandingPageInfo {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #3D6361, #27273B);
+}
+
+.LandingPageInfo-image {
+  font-size: 40rem;
+  color: #f9f8eca4;
+  position: absolute;
+  bottom: -200px;
+  left: -50px;
+  z-index: 0;
+  transition: 0.2s;
+}
+
+.LandingPageInfo-image:hover {
+  color: #f9f8ecea;
+  transform: rotateZ(-10deg);
+}
+
+.LandingPageInfo-message {
+  width: 600px;
+  height: 500px;
+  border: 2px solid #F9F8EC;
+  color: #F9F8EC;
+  z-index: 5;
+  padding: 3rem;
+  position: absolute;
+  left: 40%;
+}
+
+.LandingPageInfo-message::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  border: 2px solid #F9F8EC;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.LandingPageInfo-message-title {
+  font-size: 3rem;
+  background: 
+}
+
+.LandingPageInfo-message p {
+  padding: 1rem 0 ;
+  line-height: 30px;
+}
+
+.LandingPageInfo-tree1 {
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+  width: 80px;
+  object-fit: cover;
+  z-index: 10
+}
+
+.LandingPageInfo-tree1:hover {
+  width: 85px;
+  transition: 0.2s;
+}
+
+.LandingPageInfo-tree2 {
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+  width: 120px;
+  object-fit: cover;
+  z-index: 10
+}
+
+.LandingPageInfo-tree2:hover {
+  width: 125px;
+  transition: 0.2s;
+}

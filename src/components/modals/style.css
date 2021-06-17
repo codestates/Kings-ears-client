@@ -1,0 +1,449 @@
+@import "../../styles/App.css";
+
+/* 공통 스타일 */
+.modalSeaweed {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+  place-content: center;
+}
+
+.modalSeaweed.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show .3s;
+}
+
+.modalSeaweed > div > form {
+  display: flex;
+  flex-direction: column;
+  min-width: 80%;
+}
+
+.signinBox {
+  background-color: var(--medium-dark-color);
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.signinBox .successMsg {
+  display: flex;
+  flex-direction: column;
+}
+
+.signinBox .successMsg button {
+  width: 130px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  letter-spacing: 0px;
+  font-size: 0.8rem;
+  background-color: var(--white-color);
+  position: relative;
+  top: 60px;
+  transition: 0.1s ease-in;
+}
+
+.signinBox .successMsg button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.signinBox .signin-box-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.signinBox .signin-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.signinBox > form > input {
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+.signinBox > form > input::placeholder {
+  color: var(--white-color);
+}
+
+.signinBox > form > input:focus {
+  outline: none;
+}
+
+.signinBox > form > button {
+  width: 100px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 15px;
+  transition: 0.1s ease-in;
+  font-size: 1em;
+  letter-spacing: 0;
+}
+
+.signinBox > form > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.alert-box {
+  background-color: transparent;
+  min-height: 1em;
+  color: var(--highlight-color);
+  font-style: italic;
+  text-align: center;
+}
+
+.alert-box.error {
+  position: relative;
+  top: 25px;
+}
+
+.alert-box.pw {
+  position: relative;
+  top: 43px;
+}
+
+.alert-box.bye {
+  position: relative;
+  top: 30px;
+}
+
+.landing-modal-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  column-gap: 2rem;
+}
+
+.landing-modal-buttons button {
+  width: 140px;
+  padding: 0.7rem 2rem;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  border-radius: 999px;
+  background-color: var(--highlight-color);
+  border: none;
+}
+
+.landing-modal-buttons button:hover {
+  cursor: pointer;
+  background-color: #ffe367;
+}
+
+.modal-box {
+  background-color: var(--medium-dark-color);
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.modal-box > form > button {
+  width: 120px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 30px;
+  transition: 0.1s ease-in;
+}
+
+.modal-box > form > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.modal-box .modal-box-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.modal-box .modal-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.modal-box > form > input {
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+}
+
+.modal-box > form > input::placeholder {
+  color: var(--white-color);
+}
+
+.modal-box > form > input:focus {
+  outline: none;
+}
+
+.modal-box .successMsg {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal-box .successMsg div {
+  margin-bottom: 0.5em;
+}
+
+.modal-box .successMsg button {
+  width: 130px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 40px;
+  transition: 0.1s ease-in;
+}
+
+.modal-box .successMsg button:hover {
+  background-color: var(--highlight-color);
+}
+
+.bye-modal-box {
+  background-color: var(--medium-dark-color);
+  min-width: 400px;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.bye-modal-box > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.bye-content-wrapper > div {
+  margin-bottom: 1em;
+}
+
+.bye-content-wrapper > input {
+  width: 100%;
+  min-height: 2.5em;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  background-color: transparent;
+  color: var(--white-color);
+  position: relative;
+  top: 10px;
+}
+
+.bye-content-wrapper > input::placeholder {
+  color: var(--white-color);
+}
+
+.bye-content-wrapper > input:focus {
+  outline: none;
+}
+
+.bye-modal-box .modal-box-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .1s;
+}
+
+.bye-modal-box .modal-box-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  column-gap: 2em;
+  position: relative;
+  top: 10px;
+}
+
+.button-container > button {
+  width: 120px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  position: relative;
+  top: 30px;
+  transition: 0.1s ease-in;
+}
+
+.button-container > button:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.message div {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-show {
+  from{
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}
+
+.loginBox {
+  border-radius: 20px;
+  width: 400px;
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  background-color: var(--medium-dark-color);
+  position: relative;
+  animation: modal-show .3s;
+}
+
+.loginBox form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.loginBox .loginModal-close-btn {
+  color: var(--white-color);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  transition: ease-in-out .2s;
+}
+
+.loginBox .loginModal-close-btn:hover {
+  cursor: pointer;
+  color: var(--highlight-color);
+}
+
+.loginBox form input {
+  height: 1.5rem;
+  padding: 1rem 1rem 0.8rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--white-color);
+  color: var(--white-color);
+}
+
+.loginBox form input::placeholder {
+  color: #fff;
+}
+
+.loginBox form input:focus {
+  outline: none;
+}
+
+.loginBox form .loginModal-submit-btn {
+  width: 100px;
+  align-self: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border:none;
+  background-color: var(--white-color);
+  transition: 0.2s ease-in;
+  font-size: 1em;
+  letter-spacing: 0;
+}
+
+.loginBox form .loginModal-submit-btn:hover {
+  cursor: pointer;
+  background-color: var(--highlight-color);
+}
+
+.errorMessage {
+  color: var(--highlight-color);
+  font-style: italic;
+  text-align: center;
+}
+
+.guidance-modal-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark-main-color);
+  color: var(--white-color);
+  padding: 2rem 5rem;
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.5);
+  row-gap: 2rem;
+  font-weight: bold;
+}
+
+.guidance-modal-box button {
+  min-width: 100px;
+  padding: 0.5rem 0;
+  border-radius: 999px;
+  border: none;
+  font-weight: bold;
+}
+
+.guidance-modal-box button:hover {
+  cursor: pointer;
+  background: var(--highlight-color)
+}

@@ -1,0 +1,21 @@
+@import "../../styles/App.css";
+
+.Tooltip {
+  width: 65px;
+  visibility: hidden;
+  position: absolute;
+  bottom: -20px;
+  left: 10px;
+  font-size: 0.7rem;
+  background: #fbd428;
+  padding: 0.2rem;
+  text-align: center;
+  border-radius: 15px;
+  font-weight: bold;
+  color: var(--dark-main-color);
+}
+
+.Nav li:hover .Tooltip {
+  visibility: visible;
+  
+}

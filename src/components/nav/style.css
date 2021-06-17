@@ -1,0 +1,39 @@
+@import "../../styles/App.css";
+
+.Nav {
+  position: absolute;
+  top: 0px;
+  right: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  background: var(--medium-dark-color) ;
+  color: rgba(255, 255, 255, 0.849);
+  font-size: 1.5rem;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.Nav > ul {
+  display: flex;
+  list-style: none;
+  font-size: 1.5rem;
+  column-gap: 2rem;
+}
+
+.Nav li {
+  transition: 0.2s ease-in-out;
+}
+
+.Nav li:hover, Nav a:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  color: var(--highlight-color);
+}
+
+.Nav a {
+  text-decoration: none;
+  color: #fff;
+}
+
