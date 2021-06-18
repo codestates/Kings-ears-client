@@ -18,4 +18,33 @@
 ### 미리 보기
 ***
 
-**1.**
+**1. 랜딩 페이지**
+</br></br>
+![랜딩페이지](https://user-images.githubusercontent.com/78010395/122497868-120cd700-d029-11eb-80d3-c47097da496b.gif)
+</br></br>
+**2. 로그인**
+</br></br>
+![로그인](https://user-images.githubusercontent.com/78010395/122498257-bd1d9080-d029-11eb-84f8-dda3aae3a591.gif)
+</br></br>
+**3. 비밀 보기**
+</br></br>
+![비밀보기](https://user-images.githubusercontent.com/78010395/122498556-4af97b80-d02a-11eb-9e03-cf972a98ed86.gif)
+</br></br>
+**4. 비밀 쓰기**
+</br></br>
+![비밀쓰기](https://user-images.githubusercontent.com/78010395/122498729-9a3fac00-d02a-11eb-952d-b70a6c13c51d.gif)
+</br></br>
+**5. 마이 페이지**
+</br></br>
+![마이페이지](https://user-images.githubusercontent.com/78010395/122498933-f1de1780-d02a-11eb-8926-a57bb1debb8d.gif)
+</br></br>
+
+### 팀 데브풀
+***
+| 포지션 | 이름 | Github |
+|:----------:|:----------:|:----------:|
+| 🧡 **Frontend** | 김우성 | [IJMilk-WS](https://github.com/IJMilk-WS) |
+| 🧡 **Frontend** | 김서연 | [ksyksy815](https://github.com/ksyksy815) |
+| 💜 **Backend** | 황순은 | [Hwangsooneun](https://github.com/Hwangsooneun) |
+| 💜 **Backend** | 정현우 | [david-jeong95](https://github.com/david-Jeong95) |
+
