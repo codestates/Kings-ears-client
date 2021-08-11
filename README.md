@@ -1,7 +1,9 @@
 </br></br></br> 
 ## 비밀 공유 프로젝트 임금님귀🐴</br></br></br></br></br>
 
-[비밀의 숲으로!](https://kingdonkey.site/)</br></br></br></br>
+[비밀의 숲으로!](https://kingdonkey.site/)</br>
+[GitHubClient](https://github.com/codestates/Kings-ears-client/)</br>
+[GitHubServer](https://github.com/codestates/Kings-ears-server/)</br></br></br>
 
 동화 속 주인공은 얼마나 답답했으면 "임금님 귀는 당나귀 귀! 라고 몰래 외쳤을까요?</br></br>
 비밀을 안다는 것은 때로 굉장한 고통을 선사합니다.
